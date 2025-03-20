@@ -46,7 +46,7 @@ fun TaskNavGraph() {
         NavHost(navController = navController, startDestination = Route.HomeScreen.route) {
 
             composable(Route.HomeScreen.route) {
-                val sheetState = rememberModalBottomSheetState()
+                val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
                 var showBottomDialog by remember { mutableStateOf(false) }
 
                 if (showBottomDialog) {

@@ -54,7 +54,7 @@ fun CreateScreen(
     var dateResult by remember { mutableStateOf("Due date") }
     val openDialog = remember { mutableStateOf(false) }
 
-    var priority by remember { mutableStateOf( Priority.LOW) }
+    var priority by remember { mutableStateOf(Priority.LOW) }
 
     val title = remember { mutableStateOf("") }
     val description = remember { mutableStateOf("") }
