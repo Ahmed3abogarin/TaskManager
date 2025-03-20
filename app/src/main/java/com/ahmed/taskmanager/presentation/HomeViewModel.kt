@@ -39,9 +39,13 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getTasks() {
-        tasksUseCases.getTasks().onEach { tasks ->
-            _state.value = _state.value.copy(tasks = tasks)
-        }.launchIn(viewModelScope)
+            _state.value = _state.value.copy(isLoading = true)
+            tasksUseCases.getTasks().onEach { tasks ->
+                _state.value = _state.value.copy(tasks = tasks)
+            }.launchIn(viewModelScope)
+            _state.value = _state.value.copy(isLoading = false)
+
+
     }
 
     private fun upsertTask(task: Task) {

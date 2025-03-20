@@ -5,6 +5,7 @@ import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -27,8 +28,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.room.util.TableInfo
 import com.ahmed.taskmanager.TaskCircularProgress
 import com.ahmed.taskmanager.common.TaskCard
+import com.ahmed.taskmanager.common.TaskShimmerEffect
 import com.ahmed.taskmanager.details.DetailsEvent
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.ui.theme.Orange
@@ -51,8 +54,16 @@ fun SharedTransitionScope.HomeScreen(
     val uncompleted = allTasks - completedTasks
 
     LaunchedEffect(key1 = tasks.size, key2 = completedTasks) {
-
         progress.intValue = (completedTasks.toFloat() / allTasks.toFloat() * 100).toInt()
+    }
+
+
+    if (state.isLoading){
+        Column {
+            repeat(10){
+                TaskShimmerEffect(modifier = Modifier.padding(horizontal = 8.dp))
+            }
+        }
     }
 
 
