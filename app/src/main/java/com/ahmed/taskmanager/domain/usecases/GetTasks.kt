@@ -1,0 +1,13 @@
+package com.ahmed.taskmanager.domain.usecases
+
+import com.ahmed.taskmanager.domain.model.Task
+import com.ahmed.taskmanager.domain.repository.TasksRepository
+import kotlinx.coroutines.flow.Flow
+
+class GetTasks(
+    private val tasksRepository: TasksRepository,
+) {
+     operator fun invoke(): Flow<List<Task>> {
+        return tasksRepository.getTasks()
+    }
+}
