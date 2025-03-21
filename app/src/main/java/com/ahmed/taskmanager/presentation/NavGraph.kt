@@ -11,6 +11,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -18,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,6 +30,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ahmed.taskmanager.Route
 import com.ahmed.taskmanager.create.CreateScreen
+import com.ahmed.taskmanager.create.CreateViewModel
 import com.ahmed.taskmanager.details.DetailsScreen
 import com.ahmed.taskmanager.details.DetailsViewModel
 import com.ahmed.taskmanager.domain.model.Task
@@ -39,6 +42,10 @@ fun TaskNavGraph() {
     val navController = rememberNavController()
     val homeViewModel: HomeViewModel = hiltViewModel()
     val detailsViewModel: DetailsViewModel = hiltViewModel()
+    val createViewModel: CreateViewModel = hiltViewModel()
+
+    val coroutine = rememberCoroutineScope()
+    val snackBarState = remember { SnackbarHostState() }
 
 
 
@@ -52,7 +59,7 @@ fun TaskNavGraph() {
                 if (showBottomDialog) {
                     CreateScreen(
                         event = {
-                            homeViewModel.onEvent(it)
+                            createViewModel.onEvent(it)
                             showBottomDialog = false
                         },
                         sheetState = sheetState,
@@ -61,6 +68,9 @@ fun TaskNavGraph() {
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
+                    snackbarHost = {
+
+                    },
                     topBar = { TopAppBar(title = { Text(text = "Task Manager") }) },
                     floatingActionButton = {
                         FloatingActionButton(
@@ -80,7 +90,8 @@ fun TaskNavGraph() {
                         onClick = {
                             navigateToDetails(navController = navController, task = it)
                         },
-                        event = detailsViewModel::onEvent )
+                        event = homeViewModel::onEvent
+                    )
                 }
             }
 

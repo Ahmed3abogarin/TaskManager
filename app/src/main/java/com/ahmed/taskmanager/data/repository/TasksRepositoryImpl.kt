@@ -19,4 +19,12 @@ class TasksRepositoryImpl(
     override  fun getTasks(): Flow<List<Task>> {
         return tasksDao.getTasks()
     }
+
+    override fun getByLowPriority(): Flow<List<Task>> {
+        return tasksDao.sortByLowPriority()
+    }
+
+    override fun getByHighPriority(): Flow<List<Task>> {
+        return tasksDao.sortByHighPriority()
+    }
 }

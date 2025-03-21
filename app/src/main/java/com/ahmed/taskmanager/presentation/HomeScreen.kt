@@ -14,9 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,8 +25,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ahmed.taskmanager.TaskCircularProgress
+import com.ahmed.taskmanager.common.SortDropdown
 import com.ahmed.taskmanager.common.TaskCard
-import com.ahmed.taskmanager.details.DetailsEvent
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.ui.theme.Orange
 
@@ -41,7 +38,7 @@ fun SharedTransitionScope.HomeScreen(
     viewModel: HomeViewModel,
     modifier: Modifier = Modifier,
     onClick: (Task) -> Unit,
-    event: (DetailsEvent) -> Unit,
+    event: (HomeEvent) -> Unit,
 ) {
     val state = viewModel.state.value
     val tasks = state.tasks
@@ -66,9 +63,21 @@ fun SharedTransitionScope.HomeScreen(
         ) {
             Column(modifier = Modifier.padding(top = 16.dp)) {
                 Text(text = "Your tasks", fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                Text(text = "All tasks: $allTasks", color = Color.Gray, modifier = Modifier.padding(start = 8.dp))
-                Text(text = "uncompleted tasks: $uncompleted", color = Color.Gray, modifier = Modifier.padding(start = 8.dp))
-                Text(text = "completed tasks: $completedTasks", color = Color.Gray, modifier = Modifier.padding(start = 8.dp))
+                Text(
+                    text = "All tasks: $allTasks",
+                    color = Color.Gray,
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+                Text(
+                    text = "uncompleted tasks: $uncompleted",
+                    color = Color.Gray,
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+                Text(
+                    text = "completed tasks: $completedTasks",
+                    color = Color.Gray,
+                    modifier = Modifier.padding(start = 8.dp)
+                )
             }
             TaskCircularProgress(
                 modifier = Modifier
@@ -91,7 +100,9 @@ fun SharedTransitionScope.HomeScreen(
         ) {
             Text(text = "All tasks", fontSize = 22.sp, fontWeight = FontWeight.Bold)
 
-            Icon(Icons.Default.Menu, contentDescription = null)
+            SortDropdown(onSortClicked = {
+                event(HomeEvent.GetSortTasks(it))
+            })
 
         }
 
@@ -105,8 +116,8 @@ fun SharedTransitionScope.HomeScreen(
                 val task = it
                 TaskCard(
                     modifier = Modifier.animateItem(
-                        fadeInSpec = null,
-                        fadeOutSpec = null,
+                        fadeInSpec = tween(200),
+                        fadeOutSpec = tween(200),
                         placementSpec = tween(200)
                     ),
                     task,
@@ -120,10 +131,10 @@ fun SharedTransitionScope.HomeScreen(
                             priority = oldTask.priority,
                             done = !oldTask.done
                         )
-                        event(DetailsEvent.UpsertTask(updateTask))
+                        event(HomeEvent.UpsertTask(updateTask))
                     },
                     animatedVisibilityScope = animatedVisibilityScope,
-                    onRemove = { event(DetailsEvent.DeleteTask(task)) }
+                    onRemove = { event(HomeEvent.DeleteTask(task)) }
                 )
             }
         }
