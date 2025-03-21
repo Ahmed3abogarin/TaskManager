@@ -7,8 +7,6 @@ import com.ahmed.taskmanager.data.TasksDatabase
 import com.ahmed.taskmanager.data.repository.TasksRepositoryImpl
 import com.ahmed.taskmanager.domain.repository.TasksRepository
 import com.ahmed.taskmanager.domain.usecases.DeleteTask
-import com.ahmed.taskmanager.domain.usecases.GetByHighPriority
-import com.ahmed.taskmanager.domain.usecases.GetByLowPriority
 import com.ahmed.taskmanager.domain.usecases.GetTasks
 import com.ahmed.taskmanager.domain.usecases.TaskUseCases
 import com.ahmed.taskmanager.domain.usecases.UpsertTask
@@ -50,9 +48,7 @@ object AppModule {
     fun provideUseCases(tasksRepository: TasksRepository): TaskUseCases = TaskUseCases(
         upsertTask = UpsertTask(tasksRepository),
         deleteTask = DeleteTask(tasksRepository),
-        getTasks = GetTasks(tasksRepository),
-        getByLowPriority = GetByLowPriority(tasksRepository),
-        getByHighPriority = GetByHighPriority(tasksRepository)
+        getTasks = GetTasks(tasksRepository)
     )
 
 }

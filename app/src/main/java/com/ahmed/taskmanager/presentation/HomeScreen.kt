@@ -19,17 +19,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ahmed.taskmanager.FilterDropDown
 import com.ahmed.taskmanager.TaskCircularProgress
 import com.ahmed.taskmanager.common.SortDropdown
 import com.ahmed.taskmanager.common.EmptyScreen
 import com.ahmed.taskmanager.common.TaskCard
 import com.ahmed.taskmanager.common.TaskShimmerEffect
-import com.ahmed.taskmanager.details.DetailsEvent
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.ui.theme.Orange
 
@@ -46,14 +47,14 @@ fun SharedTransitionScope.HomeScreen(
     val state = viewModel.state.value
     val tasks = state.tasks
     val progress = remember { mutableIntStateOf(0) }
-    val completedTasks = tasks.count { it.done }
-    val allTasks = tasks.size
+    val completedTasks = state.completedTasks
+    val allTasks = state.tasksCount
     val uncompleted = allTasks - completedTasks
 
-    LaunchedEffect(key1 = tasks.size, key2 = completedTasks) {
+
 
         progress.intValue = (completedTasks.toFloat() / allTasks.toFloat() * 100).toInt()
-    }
+
 
 
     if (state.isLoading){
@@ -108,9 +109,11 @@ fun SharedTransitionScope.HomeScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 12.dp, end = 20.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "All tasks", fontSize = 22.sp, fontWeight = FontWeight.Bold)
+
+            FilterDropDown(onFilterClicked = { event(HomeEvent.FilterTasks(it))})
 
             SortDropdown(onSortClicked = {
                 event(HomeEvent.GetSortTasks(it))
