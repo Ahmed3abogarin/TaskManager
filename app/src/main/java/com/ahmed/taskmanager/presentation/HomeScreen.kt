@@ -26,7 +26,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ahmed.taskmanager.TaskCircularProgress
 import com.ahmed.taskmanager.common.SortDropdown
+import com.ahmed.taskmanager.common.EmptyScreen
 import com.ahmed.taskmanager.common.TaskCard
+import com.ahmed.taskmanager.common.TaskShimmerEffect
+import com.ahmed.taskmanager.details.DetailsEvent
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.ui.theme.Orange
 
@@ -50,6 +53,15 @@ fun SharedTransitionScope.HomeScreen(
     LaunchedEffect(key1 = tasks.size, key2 = completedTasks) {
 
         progress.intValue = (completedTasks.toFloat() / allTasks.toFloat() * 100).toInt()
+    }
+
+
+    if (state.isLoading){
+        Column {
+            repeat(10){
+                TaskShimmerEffect(modifier = Modifier.padding(horizontal = 8.dp))
+            }
+        }
     }
 
 
@@ -109,6 +121,9 @@ fun SharedTransitionScope.HomeScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
 
+        if (state.tasks.isEmpty()){
+            EmptyScreen()
+        }
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
