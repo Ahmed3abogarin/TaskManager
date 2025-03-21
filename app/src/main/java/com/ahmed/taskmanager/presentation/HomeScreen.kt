@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ahmed.taskmanager.TaskCircularProgress
+import com.ahmed.taskmanager.common.EmptyScreen
 import com.ahmed.taskmanager.common.TaskCard
 import com.ahmed.taskmanager.common.TaskShimmerEffect
 import com.ahmed.taskmanager.details.DetailsEvent
@@ -107,6 +109,9 @@ fun SharedTransitionScope.HomeScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
 
+        if (state.tasks.isEmpty()){
+            EmptyScreen()
+        }
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {

@@ -1,5 +1,4 @@
 [versions]
-accompanistReorderable = "1.0.1"
 agp = "8.9.0"
 animation = "1.7.8"
 kotlin = "2.0.21"
@@ -16,7 +15,6 @@ roomKtx = "2.6.1"
 roomRuntime = "2.6.1"
 
 [libraries]
-accompanist-reorderable = { module = "com.google.accompanist:accompanist-reorderable", version.ref = "accompanistReorderable" }
 androidx-animation = { module = "androidx.compose.animation:animation", version.ref = "animation" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
