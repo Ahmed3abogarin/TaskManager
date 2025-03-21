@@ -13,18 +13,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,9 +31,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ahmed.taskmanager.Priority
-import com.ahmed.taskmanager.Tools
 import com.ahmed.taskmanager.common.PriorityDropDown
 import com.ahmed.taskmanager.common.TaskTextField
+import com.ahmed.taskmanager.common.taskDatePicker
 import com.ahmed.taskmanager.domain.model.Task
 
 
@@ -48,11 +42,8 @@ import com.ahmed.taskmanager.domain.model.Task
 fun CreateScreen(
     event: (CreateScreenEvent) -> Unit,
     sheetState: SheetState,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
-
-    var dateResult by remember { mutableStateOf("Due date") }
-    val openDialog = remember { mutableStateOf(false) }
 
     var priority by remember { mutableStateOf(Priority.LOW) }
 
@@ -68,33 +59,7 @@ fun CreateScreen(
                 .fillMaxSize()
                 .background(Color.White)
         ) {
-            if (openDialog.value) {
-                val datePickerState = rememberDatePickerState()
-                val confirmedEnabled =
-                    remember { derivedStateOf { datePickerState.selectedDateMillis != null } }
 
-                DatePickerDialog(
-                    onDismissRequest = { openDialog.value = false },
-                    confirmButton = {
-                        TextButton(
-                            onClick = {
-                                openDialog.value = false
-                                var date = "No Selection"
-                                if (datePickerState.selectedDateMillis != null) {
-                                    date =
-                                        Tools.convertLongToTime(datePickerState.selectedDateMillis!!)
-                                }
-                                dateResult = date
-                            },
-                            enabled = confirmedEnabled.value
-                        ) {
-                            Text(text = "Okay")
-                        }
-                    }
-                ) {
-                    DatePicker(state = datePickerState)
-                }
-            }
 
             Column(
                 modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 32.dp),
@@ -128,50 +93,16 @@ fun CreateScreen(
                     priority = it
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-
-                OutlinedButton(
-                    onClick = { openDialog.value = true },
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.outlinedButtonColors()
-                ) {
-                    Text(
-                        text = dateResult,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 8.dp, bottom = 8.dp),
-                        fontSize = 16.sp,
-                        color = Color.Black
-                    )
-
-                }
-//            OutlinedTextField(
-//                colors = OutlinedTextFieldDefaults.colors(unfocusedBorderColor = Color.Black),
-//                shape = RoundedCornerShape(8.dp),
-//                readOnly = true,
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .clickable(onClick = {
-//                        openDialog.value = true
-//                    }),
-//                value = dateResult,
-//                minLines = 1,
-//                onValueChange = { dateResult = it },
-//                label = { Text(text = "Due date") },
-//            )
+                val dateResult = taskDatePicker(taskDate = "Due date")
                 Spacer(modifier = Modifier.height(40.dp))
-
-
                 Button(
                     onClick = {
-                        if (title.value.isEmpty() || description.value.isEmpty() || dateResult.isEmpty()){
-
-                        }else{
+                        if (title.value.isNotEmpty()) {
                             event(
                                 CreateScreenEvent.UpsertTask(
                                     Task(
-                                        title = title.value,
-                                        description = description.value,
+                                        title = title.value.trim(),
+                                        description = description.value.trim(),
                                         priority = priority,
                                         dueDate = dateResult
                                     )

@@ -2,6 +2,7 @@ package com.ahmed.taskmanager.common
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -17,12 +18,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import com.ahmed.taskmanager.ui.theme.Orange
+import com.ahmed.taskmanager.ui.theme.TaskManagerTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TaskTopAppBar(title: String,taskBoolean: Boolean, onDoneClick: (String, Boolean) -> Unit) {
+fun TaskTopAppBar(title: String,taskBoolean: Boolean, onDoneClick: (String, Boolean) -> Unit,onDeleteClick: () -> Unit) {
     var changeTitle by remember { mutableStateOf(title) }
     var radioStatus by remember { mutableStateOf(taskBoolean) }
     TopAppBar(
@@ -50,12 +53,23 @@ fun TaskTopAppBar(title: String,taskBoolean: Boolean, onDoneClick: (String, Bool
             })
         },
         actions = {
+            IconButton(onClick = {onDeleteClick()}) {
+                Icon(Icons.Default.Delete, contentDescription = null)
+            }
             IconButton(onClick = { onDoneClick(changeTitle, radioStatus) }) {
                 Icon(Icons.Default.Check, contentDescription = null, tint = Color.Black)
             }
-
         }
     )
 
+}
+
+@Preview
+@Composable
+fun TaskPreview(){
+    TaskManagerTheme {
+        TaskTopAppBar(title = "Anthing", taskBoolean = true, onDeleteClick = {}, onDoneClick = {i,j ->})
+
+    }
 }
 

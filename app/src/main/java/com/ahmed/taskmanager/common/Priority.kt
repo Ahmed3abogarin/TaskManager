@@ -39,6 +39,7 @@ import com.ahmed.taskmanager.ui.theme.TaskManagerTheme
 
 @Composable
 fun PriorityDropDown(
+    modifier: Modifier = Modifier,
     priority: Priority,
     onPrioritySelected: (Priority) -> Unit
 ) {
@@ -51,7 +52,7 @@ fun PriorityDropDown(
     var parentSize by remember { mutableStateOf(IntSize.Zero) }
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .onGloballyPositioned {
                 parentSize = it.size
@@ -75,13 +76,13 @@ fun PriorityDropDown(
             drawCircle(color = priority.color)
         }
         Text(
-            modifier = Modifier
+            modifier = modifier
                 .weight(weight = 8f),
             text = priority.name,
             style = MaterialTheme.typography.bodyMedium
         )
         IconButton(
-            modifier = Modifier
+            modifier = modifier
                 .alpha(0.5f)
                 .rotate(degrees = angle)
                 .weight(weight = 1.5f),
@@ -93,7 +94,7 @@ fun PriorityDropDown(
             )
         }
         DropdownMenu(
-            modifier = Modifier
+            modifier = modifier
                 .width(with(LocalDensity.current) { parentSize.width.toDp() }),
             expanded = expanded,
             onDismissRequest = { expanded = false }
