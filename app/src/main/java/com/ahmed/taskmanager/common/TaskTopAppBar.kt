@@ -18,9 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import com.ahmed.taskmanager.ui.theme.Orange
-import com.ahmed.taskmanager.ui.theme.TaskManagerTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -64,12 +62,12 @@ fun TaskTopAppBar(title: String,taskBoolean: Boolean, onDoneClick: (String, Bool
 
 }
 
-@Preview
-@Composable
-fun TaskPreview(){
-    TaskManagerTheme {
-        TaskTopAppBar(title = "Anthing", taskBoolean = true, onDeleteClick = {}, onDoneClick = {i,j ->})
-
-    }
-}
-
+//@Preview
+//@Composable
+//fun TaskPreview(){
+//    TaskManagerTheme {
+//        TaskTopAppBar(title = "Anthing", taskBoolean = true, onDeleteClick = {}, onDoneClick = {i,j ->})
+//
+//    }
+//}
+//

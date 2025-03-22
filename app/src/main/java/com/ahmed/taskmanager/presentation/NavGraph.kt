@@ -11,7 +11,10 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -34,6 +37,7 @@ import com.ahmed.taskmanager.create.CreateViewModel
 import com.ahmed.taskmanager.details.DetailsScreen
 import com.ahmed.taskmanager.details.DetailsViewModel
 import com.ahmed.taskmanager.domain.model.Task
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
 @Composable
@@ -69,7 +73,7 @@ fun TaskNavGraph() {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     snackbarHost = {
-
+                        SnackbarHost(snackBarState)
                     },
                     topBar = { TopAppBar(title = { Text(text = "Task Manager") }) },
                     floatingActionButton = {
@@ -89,6 +93,20 @@ fun TaskNavGraph() {
                         modifier = Modifier.padding(innerPadding),
                         onClick = {
                             navigateToDetails(navController = navController, task = it)
+                        },
+                        onRemoveClicked = { task ->
+                            homeViewModel.onEvent(HomeEvent.DeleteTask(task))
+                            coroutine.launch {
+                                val result = snackBarState.showSnackbar(
+                                    "Task deleted",
+                                    actionLabel = "Undo",
+                                    duration = SnackbarDuration.Long
+                                )
+                                if (result == SnackbarResult.ActionPerformed) {
+                                    homeViewModel.onEvent(HomeEvent.UpsertTask(task))
+                                }
+                            }
+
                         },
                         event = homeViewModel::onEvent
                     )

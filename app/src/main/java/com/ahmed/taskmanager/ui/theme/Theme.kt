@@ -10,6 +10,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import com.ahmed.taskmanager.AppTheme
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -58,38 +59,6 @@ fun TaskManagerTheme(
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
     selectedTheme: AppTheme,
-    content: @Composable () -> Unit,
-) {
-
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> when (selectedTheme) {
-            AppTheme.LIGHT_FIRST -> LightFirstColorScheme
-            AppTheme.DARK_FIRST -> DarkFirstColorScheme
-            AppTheme.LIGHT_SECOND -> LightSecondScheme
-            AppTheme.DARK_SECOND -> DarkSecondScheme
-        }
-    }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
-}
-
-
-@Composable
-fun TaskManagerTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = false,
-    selectedTheme: AppTheme,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
@@ -104,6 +73,7 @@ fun TaskManagerTheme(
             AppTheme.DARK_FIRST -> DarkFirstColorScheme
             AppTheme.LIGHT_SECOND -> LightSecondScheme
             AppTheme.DARK_SECOND -> DarkSecondScheme
+        }
     }
 
     MaterialTheme(

@@ -1,6 +1,5 @@
 package com.ahmed.taskmanager.presentation
 
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
@@ -49,12 +48,13 @@ fun SharedTransitionScope.HomeScreen(
     modifier: Modifier = Modifier,
     onClick: (Task) -> Unit,
     event: (HomeEvent) -> Unit,
+    onRemoveClicked: (Task) -> Unit
 ) {
     val state = viewModel.state.value
     val tasks = state.tasks
     val progress = remember { mutableIntStateOf(0) }
-    val completedTasks = tasks.count { it.done }
-    val allTasks = tasks.size
+    val completedTasks = state.completedTasks
+    val allTasks = state.taskCount
     val uncompleted = allTasks - completedTasks
 
     var currentImageSize by remember { mutableIntStateOf(160) }
@@ -62,7 +62,6 @@ fun SharedTransitionScope.HomeScreen(
         object : NestedScrollConnection {
             override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
                 val delta = available.y.toInt()
-
                 val newImageSize = currentImageSize + delta
                 val previousImageSize = currentImageSize
                 currentImageSize =
@@ -176,7 +175,7 @@ fun SharedTransitionScope.HomeScreen(
                         event(HomeEvent.UpsertTask(updateTask))
                     },
                     animatedVisibilityScope = animatedVisibilityScope,
-                    onRemove = { event(HomeEvent.DeleteTask(task)) }
+                    onRemove = { onRemoveClicked(task)}
                 )
             }
         }

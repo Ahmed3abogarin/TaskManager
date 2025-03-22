@@ -32,10 +32,3 @@ fun PriorityItem(priority: Priority) {
     }
 }
 
-@Preview
-@Composable
-fun ItemPreview(){
-    TaskManagerTheme {
-        PriorityItem(priority = Priority.LOW)
-    }
-}

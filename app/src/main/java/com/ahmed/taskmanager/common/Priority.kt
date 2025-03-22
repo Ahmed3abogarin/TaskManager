@@ -112,10 +112,3 @@ fun PriorityDropDown(
     }
 }
 
-@Preview
-@Composable
-fun PriorityPreview(){
-    TaskManagerTheme {
-        PriorityDropDown(priority = Priority.HIGH) { }
-    }
-}

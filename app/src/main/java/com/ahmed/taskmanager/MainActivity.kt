@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            TaskManagerTheme {
+            TaskManagerTheme(selectedTheme = AppTheme.LIGHT_FIRST) {
                 TaskNavGraph()
             }
         }

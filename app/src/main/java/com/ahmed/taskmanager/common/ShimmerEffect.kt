@@ -44,10 +44,3 @@ fun TaskShimmerEffect(modifier: Modifier = Modifier) {
     )
 }
 
-@Preview
-@Composable
-fun ShimmerEffectPreview() {
-    TaskManagerTheme {
-        TaskShimmerEffect()
-    }
-}
