@@ -6,18 +6,19 @@ val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
 
 val LightPurple = Color(0xFFF1F4FF)
-val LightGreen = Color(0xFFEFFCEF)
-val LightBlue = Color(0xFFE6F5FB)
+val LightGreen = Color(0xFFF2F0E6)
+
+
+val LightGreen2 = Color(0xFF7E8C54)
+
+val LightPink = Color(0xFFC8A2C8)
+val LightPink2 = Color(0xFFF0EAD6)
 
 val LightBrown = Color(0xFFF6E7DD)
 
 val Orange = Color(0xFFF69A0E)
-val LightGray = Color(0xFFADADAD)
 
 
 val LightThird = Color(0xFFEFE9E0)
@@ -25,7 +26,6 @@ val LightThird2 = Color(0xFF0F9E99)
 
 val LightFourth = Color(0xFF722F37)
 val LightFourth2= Color(0xFFEFDFBB)
-
 
 
 val LowPriorityColor = Color(0xFF00C980)

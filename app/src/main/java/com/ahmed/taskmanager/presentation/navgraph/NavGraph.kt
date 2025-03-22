@@ -2,6 +2,9 @@ package com.ahmed.taskmanager.presentation.navgraph
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -33,16 +36,16 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.ahmed.taskmanager.presentation.settings.SettingsScreen
-import com.ahmed.taskmanager.presentation.settings.ThemeViewModel
+import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.presentation.create.CreateScreen
 import com.ahmed.taskmanager.presentation.create.CreateViewModel
 import com.ahmed.taskmanager.presentation.details.DetailsScreen
 import com.ahmed.taskmanager.presentation.details.DetailsViewModel
-import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.presentation.home.HomeEvent
 import com.ahmed.taskmanager.presentation.home.HomeScreen
 import com.ahmed.taskmanager.presentation.home.HomeViewModel
+import com.ahmed.taskmanager.presentation.settings.SettingsScreen
+import com.ahmed.taskmanager.presentation.settings.ThemeViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
@@ -66,7 +69,6 @@ fun TaskNavGraph() {
             composable(Route.HomeScreen.route) {
                 val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
                 var showBottomDialog by remember { mutableStateOf(false) }
-                var showSettingsDialog = remember { mutableStateOf(false) }
 
                 if (showBottomDialog) {
                     CreateScreen(
@@ -78,7 +80,6 @@ fun TaskNavGraph() {
                         onDismiss = { showBottomDialog = false })
                 }
 
-                SettingsScreen(themeViewModel, showDialog = showSettingsDialog)
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     snackbarHost = {
@@ -87,7 +88,7 @@ fun TaskNavGraph() {
                     topBar = {
                         TopAppBar(title = { Text(text = "Task Manager") }, actions = {
                             IconButton(onClick = {
-                                showSettingsDialog.value = true
+                                navController.navigate(Route.SettingsScreen.route)
                             }) {
                                 Icon(
                                     Icons.Default.Settings,
@@ -143,7 +144,28 @@ fun TaskNavGraph() {
                         navigateUp = { navController.navigateUp() }
                     )
                 }
+            }
+            composable(
+                Route.SettingsScreen.route,
+                enterTransition = {
+                    slideInHorizontally(
+                        initialOffsetX = { it },
+                        animationSpec = tween(durationMillis = 1300)
+                    )
+                },
+                exitTransition = {
+                    slideOutHorizontally(
+                        targetOffsetX = { it },
+                        animationSpec = tween(durationMillis = 1300)
+                    )
+                }
+            ) {
 
+                SettingsScreen(
+                    viewModel = themeViewModel,
+                    navigateUp = { navController.navigate(Route.HomeScreen.route){
+                        popUpTo(0)
+                    } })
             }
         }
     }

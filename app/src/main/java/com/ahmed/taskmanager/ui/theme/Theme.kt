@@ -15,48 +15,52 @@ import com.ahmed.taskmanager.domain.model.AppTheme
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
-    tertiary = Pink80
+    tertiary = PurpleGrey80,
+    outline = Color.LightGray // for the back line
 )
 
 private val LightFirstColorScheme = lightColorScheme(
     primary = Color.Blue, // circle - radio - border
     tertiary = LightPurple, // Task card
-    onSecondary = Color.Red
+    onSecondary = Color.Red,
+    outline = Color.Black
 )
 
 
 private val LightSecondScheme = lightColorScheme(
     primary = Orange,
     tertiary = LightBrown,
-//    onBackground = Color.Red, // Text
-    onSecondary = Color.Red
+    onSecondary = Color.Red,
+    outline = Color.Black
 )
 
 private val LightThirdScheme = lightColorScheme(
     primary = LightThird2,
     tertiary = LightThird,
-//    onBackground = Color.Red, // Text
-    onSecondary = Color.Red
+    onSecondary = Color.Red,
+    outline = Color.Black
 )
 
 private val LightFourthScheme = lightColorScheme(
     primary = LightFourth,
     tertiary = LightFourth2,
-//    onBackground = Color.Red, // Text
-    onSecondary = Color.Red
+    onSecondary = Color.Red,
+    outline = Color.Black
 )
 
-private val LightFifthScheme = darkColorScheme(
-    primary = Color.Blue, // circle - radio - border
-    tertiary = LightPurple, // Task card
-    onSecondary = Color.Red
+private val LightFifthScheme = lightColorScheme(
+    primary =LightPink, // circle - radio - border
+    tertiary = LightPink2, // Task card
+    onSecondary = LightPink,
+    outline = Color.Black
 )
 
 
-private val LightSixthScheme = darkColorScheme(
-    primary = Color.Green,
-    tertiary = Color.Red,
-    onSecondary = Color.DarkGray
+private val LightSixthScheme = lightColorScheme(
+    primary = LightGreen2,
+    tertiary = LightGreen,
+    onSecondary = Color.DarkGray,
+    outline = Color.Black
 )
 
 @Composable

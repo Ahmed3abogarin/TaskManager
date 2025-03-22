@@ -87,7 +87,7 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
                 ))
 
                 // the line from the circle to the end of the screen
-                HorizontalDivider(modifier = Modifier.width(6.dp), color = Color.Black)
+                HorizontalDivider(modifier = Modifier.width(6.dp), color = MaterialTheme.colorScheme.outline)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
@@ -132,7 +132,7 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
 
 
                     }
-                    HorizontalDivider(modifier = Modifier.width(6.dp).weight(0.1f), color = Color.Black)
+                    HorizontalDivider(modifier = Modifier.width(6.dp).weight(0.1f), color = MaterialTheme.colorScheme.outline)
 
 
                 }
