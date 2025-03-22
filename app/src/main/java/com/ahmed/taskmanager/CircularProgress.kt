@@ -2,14 +2,12 @@ package com.ahmed.taskmanager
 
 import android.graphics.Paint
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -23,10 +21,8 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ahmed.taskmanager.ui.theme.Orange
 
 
 @Composable
@@ -42,14 +38,9 @@ fun TaskCircularProgress(
         mutableStateOf(Offset.Zero)
     }
 
-    val positionValue by remember {
-        mutableIntStateOf(initialValue.value)
-    }
-
-
 
     Box(
-        modifier = modifier
+        modifier = modifier.size(160.dp)
     ){
         Canvas(
             modifier = Modifier
@@ -123,17 +114,3 @@ fun TaskCircularProgress(
         }
     }
 }
-
-//@Preview
-//@Composable
-//fun ProgressPreview(){
-//    val ss = (20f/40f * 100).toInt()
-//    TaskCircularProgress(
-//        modifier = Modifier.size(250.dp).background(Color.DarkGray),
-//        initialValue = ,
-//        primaryColor = Orange,
-//        secondaryColor = Color.DarkGray,
-//        circleRadius = 230f,
-//
-//    )
-//}
