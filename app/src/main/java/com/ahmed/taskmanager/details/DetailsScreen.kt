@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -28,7 +29,6 @@ import com.ahmed.taskmanager.common.PriorityDropDown
 import com.ahmed.taskmanager.common.TaskTopAppBar
 import com.ahmed.taskmanager.common.taskDatePicker
 import com.ahmed.taskmanager.domain.model.Task
-import com.ahmed.taskmanager.ui.theme.LightBlue
 
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -46,7 +46,7 @@ fun SharedTransitionScope.DetailsScreen(
         modifier = Modifier
             .fillMaxSize()
             .statusBarsPadding()
-            .background(LightBlue)
+            .background(MaterialTheme.colorScheme.tertiary)
             .sharedElement(
                 state = rememberSharedContentState(key = "task ${task.id}"),
                 animatedVisibilityScope = animatedVisibilityScope
@@ -74,15 +74,6 @@ fun SharedTransitionScope.DetailsScreen(
             })
         HorizontalDivider(modifier = Modifier.fillMaxWidth())
 
-//        TextField(
-//            placeholder = { Text(text = "Description") },
-//            colors = TextFieldDefaults.colors(
-//                unfocusedContainerColor = Color.Transparent,
-//                unfocusedIndicatorColor = Color.Transparent,
-//                focusedContainerColor = Color.Transparent,
-//                focusedIndicatorColor = Color.Transparent
-//            ),
-//            modifier = Modifier.padding(start = 8.dp, end = 8.dp, top = 4.dp),
         OutlinedTextField(
             colors = OutlinedTextFieldDefaults.colors(unfocusedBorderColor = Color.Black),
             shape = RoundedCornerShape(8.dp),

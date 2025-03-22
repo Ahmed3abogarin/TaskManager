@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -99,7 +100,6 @@ fun SharedTransitionScope.HomeScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column {
-//                Text(text = "Your tasks", fontSize = 22.sp, fontWeight = FontWeight.Bold)
                 Text(
                     text = "All tasks: $allTasks",
                     color = Color.Gray,
@@ -120,7 +120,7 @@ fun SharedTransitionScope.HomeScreen(
                 modifier = Modifier
                     .size(currentImageSize.dp),
                 initialValue = progress,
-                primaryColor = Orange,
+                primaryColor = MaterialTheme.colorScheme.primary,
                 secondaryColor = Color.DarkGray,
                 circleRadius = (currentImageSize - 35).toFloat()
 

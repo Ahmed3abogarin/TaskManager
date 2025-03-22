@@ -4,7 +4,12 @@ import android.app.Application
 import androidx.room.Room
 import com.ahmed.taskmanager.data.TasksDao
 import com.ahmed.taskmanager.data.TasksDatabase
+import com.ahmed.taskmanager.data.manager.LocalUserImpl
 import com.ahmed.taskmanager.data.repository.TasksRepositoryImpl
+import com.ahmed.taskmanager.domain.usecases.app_theme.GetAppTheme
+import com.ahmed.taskmanager.domain.usecases.app_theme.SaveAppTheme
+import com.ahmed.taskmanager.domain.usecases.app_theme.ThemeUseCases
+import com.ahmed.taskmanager.domain.manager.LocalUserManager
 import com.ahmed.taskmanager.domain.repository.TasksRepository
 import com.ahmed.taskmanager.domain.usecases.DeleteTask
 import com.ahmed.taskmanager.domain.usecases.GetByHighPriority
@@ -21,6 +26,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Provides
+    @Singleton
+    fun provideLocalUserManager(application: Application): LocalUserManager =
+        LocalUserImpl(application)
 
     @Provides
     @Singleton
@@ -53,6 +63,13 @@ object AppModule {
         getTasks = GetTasks(tasksRepository),
         getByLowPriority = GetByLowPriority(tasksRepository),
         getByHighPriority = GetByHighPriority(tasksRepository)
+    )
+
+    @Provides
+    @Singleton
+    fun provideThemeUseCases(localUserManager: LocalUserManager): ThemeUseCases = ThemeUseCases(
+        readAppTheme = GetAppTheme(localUserManager),
+        saveAppTheme = SaveAppTheme(localUserManager)
     )
 
 }

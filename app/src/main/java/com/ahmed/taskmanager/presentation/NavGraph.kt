@@ -6,9 +6,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
@@ -32,6 +34,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ahmed.taskmanager.Route
+import com.ahmed.taskmanager.SettingsScreen
+import com.ahmed.taskmanager.ThemeViewModel
 import com.ahmed.taskmanager.create.CreateScreen
 import com.ahmed.taskmanager.create.CreateViewModel
 import com.ahmed.taskmanager.details.DetailsScreen
@@ -47,6 +51,7 @@ fun TaskNavGraph() {
     val homeViewModel: HomeViewModel = hiltViewModel()
     val detailsViewModel: DetailsViewModel = hiltViewModel()
     val createViewModel: CreateViewModel = hiltViewModel()
+    val themeViewModel: ThemeViewModel = hiltViewModel()
 
     val coroutine = rememberCoroutineScope()
     val snackBarState = remember { SnackbarHostState() }
@@ -59,6 +64,7 @@ fun TaskNavGraph() {
             composable(Route.HomeScreen.route) {
                 val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
                 var showBottomDialog by remember { mutableStateOf(false) }
+                var showSettingsDialog = remember { mutableStateOf(false) }
 
                 if (showBottomDialog) {
                     CreateScreen(
@@ -70,12 +76,25 @@ fun TaskNavGraph() {
                         onDismiss = { showBottomDialog = false })
                 }
 
+                SettingsScreen(themeViewModel, showDialog = showSettingsDialog)
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     snackbarHost = {
                         SnackbarHost(snackBarState)
                     },
-                    topBar = { TopAppBar(title = { Text(text = "Task Manager") }) },
+                    topBar = {
+                        TopAppBar(title = { Text(text = "Task Manager") }, actions = {
+                            IconButton(onClick = {
+                                showSettingsDialog.value = true
+                            }) {
+                                Icon(
+                                    Icons.Default.Settings,
+                                    contentDescription = null,
+                                    tint = Color.Black
+                                )
+                            }
+                        })
+                    },
                     floatingActionButton = {
                         FloatingActionButton(
                             onClick = {
@@ -132,7 +151,5 @@ fun TaskNavGraph() {
 
 private fun navigateToDetails(navController: NavController, task: Task) {
     navController.currentBackStackEntry?.savedStateHandle?.set("task", task)
-    navController.navigate(
-        route = Route.DetailsScreen.route
-    )
+    navController.navigate(route = Route.DetailsScreen.route)
 }

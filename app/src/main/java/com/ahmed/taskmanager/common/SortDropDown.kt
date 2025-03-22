@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import com.ahmed.taskmanager.R
 
@@ -21,7 +22,7 @@ fun SortDropdown(onSortClicked: (Int) -> Unit) {
 
     Box {
         IconButton(onClick = { expanded = true }) {
-            Icon(painter = painterResource(R.drawable.ic_filter_list), contentDescription = "Filter icon")
+            Icon(painter = painterResource(R.drawable.ic_filter_list), contentDescription = "Filter icon", tint = Color.Black)
         }
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             sortOptions.forEachIndexed { index ,option ->

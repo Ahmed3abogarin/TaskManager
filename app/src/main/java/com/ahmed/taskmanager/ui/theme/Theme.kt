@@ -35,7 +35,9 @@ private val LightColorScheme = lightColorScheme(
 )
 
 private val LightFirstColorScheme = lightColorScheme(
-    primary = Color.Blue
+    primary = Color.Blue, // circle - radio - border
+    tertiary = LightPurple, // Task card
+    onSecondary = Color.Red
 )
 
 private val DarkFirstColorScheme = darkColorScheme(
@@ -44,7 +46,24 @@ private val DarkFirstColorScheme = darkColorScheme(
 
 
 private val LightSecondScheme = lightColorScheme(
-    primary = Color.Cyan
+    primary = Orange,
+    tertiary = LightBrown,
+//    onBackground = Color.Red, // Text
+    onSecondary = Color.Red
+)
+
+private val LightThirdScheme = lightColorScheme(
+    primary = LightThird2,
+    tertiary = LightThird,
+//    onBackground = Color.Red, // Text
+    onSecondary = Color.Red
+)
+
+private val LightFourthScheme = lightColorScheme(
+    primary = LightFourth,
+    tertiary = LightFourth2,
+//    onBackground = Color.Red, // Text
+    onSecondary = Color.Red
 )
 
 private val DarkSecondScheme = darkColorScheme(
@@ -73,6 +92,8 @@ fun TaskManagerTheme(
             AppTheme.DARK_FIRST -> DarkFirstColorScheme
             AppTheme.LIGHT_SECOND -> LightSecondScheme
             AppTheme.DARK_SECOND -> DarkSecondScheme
+            AppTheme.LIGHT_THIRD -> LightThirdScheme
+            AppTheme.LIGHT_Fourth -> LightFourthScheme
         }
     }
 

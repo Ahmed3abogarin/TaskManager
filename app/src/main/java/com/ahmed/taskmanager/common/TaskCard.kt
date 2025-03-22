@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.SwipeToDismissBox
@@ -47,7 +48,6 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
         confirmValueChange = { state ->
             if (state == SwipeToDismissBoxValue.EndToStart){
                 coroutineScope.launch {
-//                    delay(1.seconds)
                     onRemove()
                 }
                 true
@@ -60,14 +60,7 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
     SwipeToDismissBox(
         state = swipeToDismissBoxState,
         backgroundContent = {
-            val backColor by animateColorAsState(
-                targetValue = when(swipeToDismissBoxState.currentValue){
-                    SwipeToDismissBoxValue.StartToEnd -> Color.Green
-                    SwipeToDismissBoxValue.EndToStart -> Color.Red
-                    SwipeToDismissBoxValue.Settled -> Color.Transparent
-                }, label = "Animate bg color"
-            )
-            Box(modifier = Modifier.fillMaxSize().background(backColor))
+            Box(modifier = Modifier.fillMaxSize().background(Color.Transparent))
         },
         modifier = modifier
     ) {
@@ -83,27 +76,16 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // the circle
-//            Box(
-//                modifier = Modifier
-//                    .size(16.dp)
-//                    .clip(CircleShape)
-//                    .border(
-//                        border = BorderStroke(3.dp, Color.Black),
-//                        shape = CircleShape
-//                    )
-//            )
                 RadioButton(selected = task.done,onClick = {
                     onRadioClicked(task)
                 }, modifier = Modifier.size(16.dp), colors = RadioButtonDefaults.colors(
                     disabledSelectedColor = Color.Black,
                     disabledUnselectedColor = Color.Black,
-                    selectedColor = Orange, unselectedColor = Color.Black
+                    selectedColor = MaterialTheme.colorScheme.primary, unselectedColor = Color.Black
                 ))
 
                 // the line from the circle to the end of the screen
                 HorizontalDivider(modifier = Modifier.width(6.dp), color = Color.Black)
-
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
@@ -111,7 +93,7 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
                     Column(
                         modifier = Modifier
                             .clip(RoundedCornerShape(14.dp))
-                            .background(LightBlue)
+                            .background(MaterialTheme.colorScheme.tertiary)
                             .weight(0.9f)
                             .clickable(onClick = onClick)
                             .sharedElement(

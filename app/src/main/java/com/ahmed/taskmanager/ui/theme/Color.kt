@@ -14,8 +14,18 @@ val LightPurple = Color(0xFFF1F4FF)
 val LightGreen = Color(0xFFEFFCEF)
 val LightBlue = Color(0xFFE6F5FB)
 
+val LightBrown = Color(0xFFF6E7DD)
+
 val Orange = Color(0xFFF69A0E)
 val LightGray = Color(0xFFADADAD)
+
+
+val LightThird = Color(0xFFEFE9E0)
+val LightThird2 = Color(0xFF0F9E99)
+
+val LightFourth = Color(0xFF722F37)
+val LightFourth2= Color(0xFFEFDFBB)
+
 
 
 val LowPriorityColor = Color(0xFF00C980)
