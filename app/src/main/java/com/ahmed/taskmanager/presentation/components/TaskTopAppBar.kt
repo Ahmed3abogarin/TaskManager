@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
@@ -45,7 +46,7 @@ fun TaskTopAppBar(title: String,taskBoolean: Boolean, onDoneClick: (String, Bool
             RadioButton(selected = radioStatus,colors = RadioButtonDefaults.colors(
                 disabledSelectedColor = Color.Black,
                 disabledUnselectedColor = Color.Black,
-                selectedColor = Orange, unselectedColor = Color.Black
+                selectedColor = MaterialTheme.colorScheme.primary, unselectedColor = Color.Black
             ), onClick = {
                 radioStatus = !radioStatus
             })
