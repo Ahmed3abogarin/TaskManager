@@ -17,7 +17,7 @@ import com.ahmed.taskmanager.R
 @Composable
 fun SortDropdown(onSortClicked: (Int) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
-    val sortOptions = listOf("Priority: Low to High", "Priority: High to Low")
+    val sortOptions = listOf("Priority: Low to High", "Priority: High to Low","Completed tasks","Pending tasks")
 
     Box {
         IconButton(onClick = { expanded = true }) {

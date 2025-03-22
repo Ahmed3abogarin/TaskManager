@@ -50,21 +50,35 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getTasks() {
-            _state.value = _state.value.copy(isLoading = true)
-            tasksUseCases.getTasks().onEach { tasks ->
-                _state.value = _state.value.copy(tasks = tasks)
-            }.launchIn(viewModelScope)
-            _state.value = _state.value.copy(isLoading = false)
-
-
+        _state.value = _state.value.copy(isLoading = true)
+        tasksUseCases.getTasks().onEach { tasks ->
+            _state.value = _state.value.copy(tasks = tasks)
+        }.launchIn(viewModelScope)
+        _state.value = _state.value.copy(isLoading = false)
     }
 
-    private fun sortTasks(sort: Int){
-        when(sort) {
+    private fun sortTasks(sort: Int) {
+        when (sort) {
             0 -> getTasksByLowPriority()
             1 -> getTasksByHighPriority()
+            2 -> getCompletedTasks()
+            3 -> getUncompletedTasks()
             else -> getTasks()
         }
+    }
+
+    private fun getUncompletedTasks() {
+        tasksUseCases.getTasks().onEach { tasks ->
+            val uncompleted = tasks.filter { !it.done }
+            _state.value = _state.value.copy(tasks = uncompleted)
+        }.launchIn(viewModelScope)
+    }
+
+    private fun getCompletedTasks() {
+        tasksUseCases.getTasks().onEach { tasks ->
+            val uncompleted = tasks.filter { it.done }
+            _state.value = _state.value.copy(tasks = uncompleted)
+        }.launchIn(viewModelScope)
     }
 
     private fun getTasksByLowPriority() {
@@ -85,7 +99,8 @@ class HomeViewModel @Inject constructor(
             tasksUseCases.upsertTask(task)
         }
     }
-    private fun deleteTask(task: Task){
+
+    private fun deleteTask(task: Task) {
         CoroutineScope(Dispatchers.IO).launch {
             tasksUseCases.deleteTask(task)
         }

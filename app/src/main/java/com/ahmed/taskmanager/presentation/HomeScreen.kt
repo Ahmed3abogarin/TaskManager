@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -72,21 +73,22 @@ fun SharedTransitionScope.HomeScreen(
                 .fillMaxWidth()
                 .padding(start = 16.dp, end = 12.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(modifier = Modifier.padding(top = 16.dp)) {
-                Text(text = "Your tasks", fontSize = 22.sp, fontWeight = FontWeight.Bold)
+            Column {
+//                Text(text = "Your tasks", fontSize = 22.sp, fontWeight = FontWeight.Bold)
                 Text(
                     text = "All tasks: $allTasks",
                     color = Color.Gray,
                     modifier = Modifier.padding(start = 8.dp)
                 )
                 Text(
-                    text = "uncompleted tasks: $uncompleted",
+                    text = "completed tasks: $completedTasks",
                     color = Color.Gray,
                     modifier = Modifier.padding(start = 8.dp)
                 )
                 Text(
-                    text = "completed tasks: $completedTasks",
+                    text = "Pending tasks: $uncompleted",
                     color = Color.Gray,
                     modifier = Modifier.padding(start = 8.dp)
                 )
@@ -110,7 +112,7 @@ fun SharedTransitionScope.HomeScreen(
                 .padding(start = 12.dp, end = 20.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "All tasks", fontSize = 22.sp, fontWeight = FontWeight.Bold)
+            Text(text = "Tasks", fontSize = 22.sp, fontWeight = FontWeight.Bold)
 
             SortDropdown(onSortClicked = {
                 event(HomeEvent.GetSortTasks(it))
