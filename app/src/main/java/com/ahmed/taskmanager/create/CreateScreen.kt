@@ -114,7 +114,6 @@ fun CreateScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
                     elevation = ButtonDefaults.elevatedButtonElevation(2.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Black)
                 ) {
                     Text(text = "Add Task", fontSize = 18.sp, modifier = Modifier.padding(4.dp))
 
