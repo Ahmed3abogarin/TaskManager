@@ -2,7 +2,7 @@ package com.ahmed.taskmanager.details
 
 import androidx.lifecycle.ViewModel
 import com.ahmed.taskmanager.domain.model.Task
-import com.ahmed.taskmanager.domain.usecases.TaskUseCases
+import com.ahmed.taskmanager.domain.usecases.tasks.TaskUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -3,7 +3,6 @@ package com.ahmed.taskmanager.domain.model
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ahmed.taskmanager.Priority
 import kotlinx.parcelize.Parcelize
 
 @Entity
@@ -13,7 +12,7 @@ data class Task(
     val id: Int = 0,
     val title: String,
     val description: String, // Optional
-    val priority: Priority ,
+    val priority: Priority,
     val dueDate: String,
     val done: Boolean = false,
 ): Parcelable

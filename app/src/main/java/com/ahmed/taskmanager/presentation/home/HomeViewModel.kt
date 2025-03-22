@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.presentation
+package com.ahmed.taskmanager.presentation.home
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
@@ -7,7 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ahmed.taskmanager.domain.model.Task
-import com.ahmed.taskmanager.domain.usecases.TaskUseCases
+import com.ahmed.taskmanager.domain.usecases.tasks.TaskUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

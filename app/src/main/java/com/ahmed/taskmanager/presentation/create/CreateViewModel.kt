@@ -1,9 +1,8 @@
-package com.ahmed.taskmanager.create
+package com.ahmed.taskmanager.presentation.create
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.ahmed.taskmanager.domain.model.Task
-import com.ahmed.taskmanager.domain.usecases.TaskUseCases
+import com.ahmed.taskmanager.domain.usecases.tasks.TaskUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

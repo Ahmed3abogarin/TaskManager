@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.create
+package com.ahmed.taskmanager.presentation.create
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -30,7 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ahmed.taskmanager.Priority
+import com.ahmed.taskmanager.domain.model.Priority
 import com.ahmed.taskmanager.common.PriorityDropDown
 import com.ahmed.taskmanager.common.TaskTextField
 import com.ahmed.taskmanager.common.taskDatePicker

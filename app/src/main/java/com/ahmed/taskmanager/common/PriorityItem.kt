@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager
+package com.ahmed.taskmanager.common
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Row
@@ -9,10 +9,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.ahmed.taskmanager.Dimens.LARGE_PADDING
-import com.ahmed.taskmanager.Dimens.PRIORITY_INDICATOR_SIZE
-import com.ahmed.taskmanager.ui.theme.TaskManagerTheme
+import com.ahmed.taskmanager.domain.model.Priority
+import com.ahmed.taskmanager.util.Dimens.LARGE_PADDING
+import com.ahmed.taskmanager.util.Dimens.PRIORITY_INDICATOR_SIZE
 
 @Composable
 fun PriorityItem(priority: Priority) {

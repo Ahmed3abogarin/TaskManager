@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.domain.usecases
+package com.ahmed.taskmanager.domain.usecases.tasks
 
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.domain.repository.TasksRepository

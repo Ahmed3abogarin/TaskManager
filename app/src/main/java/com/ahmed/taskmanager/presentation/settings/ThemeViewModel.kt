@@ -1,14 +1,12 @@
-package com.ahmed.taskmanager
+package com.ahmed.taskmanager.presentation.settings
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ahmed.taskmanager.domain.model.AppTheme
 import com.ahmed.taskmanager.domain.usecases.app_theme.ThemeUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager
+package com.ahmed.taskmanager.presentation.navgraph
 
 sealed class Route(val route: String) {
     data object HomeScreen: Route(route = "HomeScreen")

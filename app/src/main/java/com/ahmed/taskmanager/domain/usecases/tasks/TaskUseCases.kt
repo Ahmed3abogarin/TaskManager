@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.domain.usecases
+package com.ahmed.taskmanager.domain.usecases.tasks
 
 data class TaskUseCases(
     val upsertTask: UpsertTask,

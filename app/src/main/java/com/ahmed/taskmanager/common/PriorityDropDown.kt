@@ -28,14 +28,11 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import com.ahmed.taskmanager.Dimens.PRIORITY_DROP_DOWN_HEIGHT
-import com.ahmed.taskmanager.Dimens.PRIORITY_INDICATOR_SIZE
-import com.ahmed.taskmanager.Priority
-import com.ahmed.taskmanager.PriorityItem
-import com.ahmed.taskmanager.ui.theme.TaskManagerTheme
+import com.ahmed.taskmanager.util.Dimens.PRIORITY_DROP_DOWN_HEIGHT
+import com.ahmed.taskmanager.util.Dimens.PRIORITY_INDICATOR_SIZE
+import com.ahmed.taskmanager.domain.model.Priority
 
 @Composable
 fun PriorityDropDown(

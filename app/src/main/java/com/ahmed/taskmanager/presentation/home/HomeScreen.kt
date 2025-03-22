@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.presentation
+package com.ahmed.taskmanager.presentation.home
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -32,13 +32,12 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ahmed.taskmanager.TaskCircularProgress
+import com.ahmed.taskmanager.common.TaskCircularProgress
 import com.ahmed.taskmanager.common.SortDropdown
 import com.ahmed.taskmanager.common.EmptyScreen
 import com.ahmed.taskmanager.common.TaskCard
 import com.ahmed.taskmanager.common.TaskShimmerEffect
 import com.ahmed.taskmanager.domain.model.Task
-import com.ahmed.taskmanager.ui.theme.Orange
 
 
 @OptIn(ExperimentalSharedTransitionApi::class)

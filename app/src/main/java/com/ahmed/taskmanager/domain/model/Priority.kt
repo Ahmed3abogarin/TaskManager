@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager
+package com.ahmed.taskmanager.domain.model
 
 import androidx.compose.ui.graphics.Color
 import com.ahmed.taskmanager.ui.theme.HighPriorityColor

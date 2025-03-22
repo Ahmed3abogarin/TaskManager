@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager
+package com.ahmed.taskmanager.common
 
 import android.graphics.Paint
 import androidx.compose.foundation.Canvas

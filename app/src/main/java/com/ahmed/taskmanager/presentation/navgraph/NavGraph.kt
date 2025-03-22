@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.presentation
+package com.ahmed.taskmanager.presentation.navgraph
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
@@ -33,14 +33,16 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.ahmed.taskmanager.Route
-import com.ahmed.taskmanager.SettingsScreen
-import com.ahmed.taskmanager.ThemeViewModel
-import com.ahmed.taskmanager.create.CreateScreen
-import com.ahmed.taskmanager.create.CreateViewModel
+import com.ahmed.taskmanager.presentation.settings.SettingsScreen
+import com.ahmed.taskmanager.presentation.settings.ThemeViewModel
+import com.ahmed.taskmanager.presentation.create.CreateScreen
+import com.ahmed.taskmanager.presentation.create.CreateViewModel
 import com.ahmed.taskmanager.details.DetailsScreen
 import com.ahmed.taskmanager.details.DetailsViewModel
 import com.ahmed.taskmanager.domain.model.Task
+import com.ahmed.taskmanager.presentation.home.HomeEvent
+import com.ahmed.taskmanager.presentation.home.HomeScreen
+import com.ahmed.taskmanager.presentation.home.HomeViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)

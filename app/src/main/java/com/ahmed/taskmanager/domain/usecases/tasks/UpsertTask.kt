@@ -1,12 +1,12 @@
-package com.ahmed.taskmanager.domain.usecases
+package com.ahmed.taskmanager.domain.usecases.tasks
 
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.domain.repository.TasksRepository
 
-class DeleteTask(
+class UpsertTask(
     private val tasksRepository: TasksRepository,
 ) {
     suspend operator fun invoke(task: Task) {
-        tasksRepository.deleteTask(task)
+        tasksRepository.upsertTask(task)
     }
 }

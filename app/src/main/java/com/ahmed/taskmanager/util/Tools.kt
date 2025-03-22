@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager
+package com.ahmed.taskmanager.util
 
 import java.text.SimpleDateFormat
 import java.util.Date
