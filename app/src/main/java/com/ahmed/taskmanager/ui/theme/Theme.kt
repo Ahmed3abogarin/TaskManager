@@ -33,11 +33,63 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+private val LightFirstColorScheme = lightColorScheme(
+    primary = Color.Blue
+)
+
+private val DarkFirstColorScheme = darkColorScheme(
+    primary = Color.DarkGray
+)
+
+
+private val LightSecondScheme = lightColorScheme(
+    primary = Color.Cyan
+)
+
+private val DarkSecondScheme = darkColorScheme(
+    primary = Color.Green,
+    background = Color.Red
+
+)
+
 @Composable
 fun TaskManagerTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
+    selectedTheme: AppTheme,
+    content: @Composable () -> Unit,
+) {
+
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
+
+        darkTheme -> DarkColorScheme
+        else -> when (selectedTheme) {
+            AppTheme.LIGHT_FIRST -> LightFirstColorScheme
+            AppTheme.DARK_FIRST -> DarkFirstColorScheme
+            AppTheme.LIGHT_SECOND -> LightSecondScheme
+            AppTheme.DARK_SECOND -> DarkSecondScheme
+        }
+    }
+
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = Typography,
+        content = content
+    )
+}
+
+
+@Composable
+fun TaskManagerTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    // Dynamic color is available on Android 12+
+    dynamicColor: Boolean = false,
+    selectedTheme: AppTheme,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
@@ -47,7 +99,11 @@ fun TaskManagerTheme(
         }
 
         darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        else -> when (selectedTheme) {
+            AppTheme.LIGHT_FIRST -> LightFirstColorScheme
+            AppTheme.DARK_FIRST -> DarkFirstColorScheme
+            AppTheme.LIGHT_SECOND -> LightSecondScheme
+            AppTheme.DARK_SECOND -> DarkSecondScheme
     }
 
     MaterialTheme(
@@ -56,3 +112,4 @@ fun TaskManagerTheme(
         content = content
     )
 }
+
