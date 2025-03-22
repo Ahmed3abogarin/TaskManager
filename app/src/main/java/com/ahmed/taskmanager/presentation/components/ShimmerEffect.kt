@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.common
+package com.ahmed.taskmanager.presentation.components
 
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -15,10 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ahmed.taskmanager.R
-import com.ahmed.taskmanager.ui.theme.TaskManagerTheme
 
 
 fun Modifier.shimmerEffect() = composed {

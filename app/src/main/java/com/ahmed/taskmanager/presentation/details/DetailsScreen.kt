@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.details
+package com.ahmed.taskmanager.presentation.details
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -25,9 +25,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.ahmed.taskmanager.common.PriorityDropDown
-import com.ahmed.taskmanager.common.TaskTopAppBar
-import com.ahmed.taskmanager.common.taskDatePicker
+import com.ahmed.taskmanager.presentation.components.PriorityDropDown
+import com.ahmed.taskmanager.presentation.components.TaskTopAppBar
+import com.ahmed.taskmanager.presentation.components.taskDatePicker
 import com.ahmed.taskmanager.domain.model.Task
 
 

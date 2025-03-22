@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.common
+package com.ahmed.taskmanager.presentation.components
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -26,7 +26,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
@@ -71,8 +70,9 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            val parts = task.time.split(" ")
             Text(
-                text = "9:30\nAM",
+                text = "${parts[0]}\n${parts[1]}",
                 textAlign = TextAlign.Center
             )
             Row(

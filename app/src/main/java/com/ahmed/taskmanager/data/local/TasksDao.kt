@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.data
+package com.ahmed.taskmanager.data.local
 
 import androidx.room.Dao
 import androidx.room.Delete

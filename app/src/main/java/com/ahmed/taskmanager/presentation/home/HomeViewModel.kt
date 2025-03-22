@@ -1,9 +1,7 @@
 package com.ahmed.taskmanager.presentation.home
 
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ahmed.taskmanager.domain.model.Task
@@ -26,10 +24,6 @@ class HomeViewModel @Inject constructor(
     private val _state = mutableStateOf(HomeState())
     val state: State<HomeState> = _state
 
-    var sideEffect by mutableStateOf<String?>(null)
-        private set
-
-
     init {
         getTasks()
     }
@@ -40,17 +34,18 @@ class HomeViewModel @Inject constructor(
             is HomeEvent.DeleteTask -> deleteTask(event.task)
             is HomeEvent.GetTasks ->getTasks()
             is HomeEvent.GetSortTasks -> sortTasks(event.sort)
-            is HomeEvent.RemoveSideEffect -> sideEffect = null
         }
     }
 
     private fun getTasks() {
         _state.value = _state.value.copy(isLoading = true)
+
         tasksUseCases.getTasks().onEach { tasks ->
-            _state.value = _state.value.copy(taskCount = tasks.size)
             val completed = tasks.filter { it.done }
-            _state.value = _state.value.copy(completedTasks = completed.size )
-            _state.value = _state.value.copy(tasks = tasks)
+            _state.value = _state.value.copy(
+                completedTasks = completed.size,
+                tasks = tasks,
+                taskCount = tasks.size)
         }.launchIn(viewModelScope)
         _state.value = _state.value.copy(isLoading = false)
     }
@@ -101,7 +96,6 @@ class HomeViewModel @Inject constructor(
     private fun deleteTask(task: Task) {
         CoroutineScope(Dispatchers.IO).launch {
             tasksUseCases.deleteTask(task)
-            sideEffect = "Task deleted"
         }
     }
 

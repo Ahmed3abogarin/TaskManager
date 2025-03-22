@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.details
+package com.ahmed.taskmanager.presentation.details
 
 import com.ahmed.taskmanager.domain.model.Task
 

@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.common
+package com.ahmed.taskmanager.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

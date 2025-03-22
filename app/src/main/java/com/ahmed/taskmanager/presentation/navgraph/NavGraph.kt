@@ -37,8 +37,8 @@ import com.ahmed.taskmanager.presentation.settings.SettingsScreen
 import com.ahmed.taskmanager.presentation.settings.ThemeViewModel
 import com.ahmed.taskmanager.presentation.create.CreateScreen
 import com.ahmed.taskmanager.presentation.create.CreateViewModel
-import com.ahmed.taskmanager.details.DetailsScreen
-import com.ahmed.taskmanager.details.DetailsViewModel
+import com.ahmed.taskmanager.presentation.details.DetailsScreen
+import com.ahmed.taskmanager.presentation.details.DetailsViewModel
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.presentation.home.HomeEvent
 import com.ahmed.taskmanager.presentation.home.HomeScreen

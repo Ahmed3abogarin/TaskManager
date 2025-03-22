@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.common
+package com.ahmed.taskmanager.presentation.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Canvas

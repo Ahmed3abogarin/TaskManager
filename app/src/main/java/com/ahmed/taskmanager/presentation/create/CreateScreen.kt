@@ -31,9 +31,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ahmed.taskmanager.domain.model.Priority
-import com.ahmed.taskmanager.common.PriorityDropDown
-import com.ahmed.taskmanager.common.TaskTextField
-import com.ahmed.taskmanager.common.taskDatePicker
+import com.ahmed.taskmanager.presentation.components.PriorityDropDown
+import com.ahmed.taskmanager.presentation.components.TaskTextField
+import com.ahmed.taskmanager.presentation.components.taskDatePicker
 import com.ahmed.taskmanager.domain.model.Task
 
 

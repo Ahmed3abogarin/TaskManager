@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager.common
+package com.ahmed.taskmanager.presentation.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Row

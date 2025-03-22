@@ -18,7 +18,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val viewmodel: ThemeViewModel = hiltViewModel()
-            TaskManagerTheme(selectedTheme = viewmodel.selectedTheme.value) {
+            val theme = viewmodel.selectedTheme.value
+            TaskManagerTheme(selectedTheme = theme) {
                 TaskNavGraph()
 
             }

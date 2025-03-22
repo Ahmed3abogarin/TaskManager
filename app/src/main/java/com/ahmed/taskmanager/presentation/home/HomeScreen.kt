@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -32,11 +33,11 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ahmed.taskmanager.common.TaskCircularProgress
-import com.ahmed.taskmanager.common.SortDropdown
-import com.ahmed.taskmanager.common.EmptyScreen
-import com.ahmed.taskmanager.common.TaskCard
-import com.ahmed.taskmanager.common.TaskShimmerEffect
+import com.ahmed.taskmanager.presentation.components.TaskCircularProgress
+import com.ahmed.taskmanager.presentation.components.SortDropdown
+import com.ahmed.taskmanager.presentation.components.EmptyScreen
+import com.ahmed.taskmanager.presentation.components.TaskCard
+import com.ahmed.taskmanager.presentation.components.TaskShimmerEffect
 import com.ahmed.taskmanager.domain.model.Task
 
 
@@ -74,7 +75,6 @@ fun SharedTransitionScope.HomeScreen(
     }
 
     LaunchedEffect(key1 = tasks.size, key2 = completedTasks) {
-
         progress.intValue = (completedTasks.toFloat() / allTasks.toFloat() * 100).toInt()
     }
 
@@ -146,13 +146,13 @@ fun SharedTransitionScope.HomeScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
 
-        if (state.tasks.isEmpty()){
+        if (tasks.isEmpty()){
             EmptyScreen()
         }
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(state.tasks, key = { task -> task.id }) {
+            items(tasks, key = { task -> task.id }) {
                 val task = it
                 TaskCard(
                     modifier = Modifier.animateItem(

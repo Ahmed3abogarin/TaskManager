@@ -2,8 +2,8 @@ package com.ahmed.taskmanager.di
 
 import android.app.Application
 import androidx.room.Room
-import com.ahmed.taskmanager.data.TasksDao
-import com.ahmed.taskmanager.data.TasksDatabase
+import com.ahmed.taskmanager.data.local.TasksDao
+import com.ahmed.taskmanager.data.local.TasksDatabase
 import com.ahmed.taskmanager.data.manager.LocalUserImpl
 import com.ahmed.taskmanager.data.repository.TasksRepositoryImpl
 import com.ahmed.taskmanager.domain.usecases.app_theme.GetAppTheme

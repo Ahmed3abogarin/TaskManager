@@ -7,5 +7,4 @@ sealed class HomeEvent {
     data class DeleteTask(val task: Task): HomeEvent()
     data object GetTasks : HomeEvent()
     data class GetSortTasks(val sort: Int): HomeEvent()
-    data object RemoveSideEffect: HomeEvent()
 }
