@@ -14,9 +14,9 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Text
+ import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -74,8 +74,13 @@ fun SharedTransitionScope.DetailsScreen(
             })
         HorizontalDivider(modifier = Modifier.fillMaxWidth())
 
-        OutlinedTextField(
-            colors = OutlinedTextFieldDefaults.colors(unfocusedBorderColor = Color.Black),
+        TextField(
+            colors = TextFieldDefaults.colors(
+                unfocusedContainerColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedContainerColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent
+            ),
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier
                 .fillMaxWidth()

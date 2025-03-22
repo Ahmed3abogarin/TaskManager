@@ -61,13 +61,3 @@ fun TaskTopAppBar(title: String,taskBoolean: Boolean, onDoneClick: (String, Bool
     )
 
 }
-
-//@Preview
-//@Composable
-//fun TaskPreview(){
-//    TaskManagerTheme {
-//        TaskTopAppBar(title = "Anthing", taskBoolean = true, onDeleteClick = {}, onDoneClick = {i,j ->})
-//
-//    }
-//}
-//
