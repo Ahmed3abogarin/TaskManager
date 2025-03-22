@@ -122,7 +122,7 @@ fun TaskNavGraph() {
                                 val result = snackBarState.showSnackbar(
                                     "Task deleted",
                                     actionLabel = "Undo",
-                                    duration = SnackbarDuration.Long
+                                    duration = SnackbarDuration.Short
                                 )
                                 if (result == SnackbarResult.ActionPerformed) {
                                     homeViewModel.onEvent(HomeEvent.UpsertTask(task))
