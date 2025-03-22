@@ -30,7 +30,6 @@ import com.ahmed.taskmanager.common.SortDropdown
 import com.ahmed.taskmanager.common.EmptyScreen
 import com.ahmed.taskmanager.common.TaskCard
 import com.ahmed.taskmanager.common.TaskShimmerEffect
-import com.ahmed.taskmanager.details.DetailsEvent
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.ui.theme.Orange
 
