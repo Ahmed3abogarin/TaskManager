@@ -25,7 +25,10 @@ import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -53,6 +56,9 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
         }
     )
 
+    // Ensure the radio button updates with the latest primary color
+    val selectedColor by rememberUpdatedState(MaterialTheme.colorScheme.primary)
+
     SwipeToDismissBox(
         state = swipeToDismissBoxState,
         backgroundContent = {
@@ -77,7 +83,7 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
                 }, modifier = Modifier.size(16.dp), colors = RadioButtonDefaults.colors(
                     disabledSelectedColor = Color.Black,
                     disabledUnselectedColor = Color.Black,
-                    selectedColor = MaterialTheme.colorScheme.primary, unselectedColor = Color.Black
+                    selectedColor = selectedColor, unselectedColor = Color.Black
                 ))
 
                 // the line from the circle to the end of the screen
