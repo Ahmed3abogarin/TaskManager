@@ -22,3 +22,6 @@ A modern and efficient Task Manager app built with Jetpack Compose, designed to 
 
 ## Screenshots
 ![Untitled design (18)](https://github.com/user-attachments/assets/54d28c11-75b0-455a-ae46-a385ae5fd928)
+
+### App themes
+![Task manager theme](https://github.com/user-attachments/assets/da858c89-e3bc-41a1-a2d0-738476d1a7fb)
