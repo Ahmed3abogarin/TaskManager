@@ -120,7 +120,7 @@ fun SharedTransitionScope.HomeScreen(
                 initialValue = progress,
                 primaryColor = MaterialTheme.colorScheme.primary,
                 secondaryColor = Color.DarkGray,
-                circleRadius = (currentImageSize - 35).toFloat()
+                circleRadius = (currentImageSize - 10).toFloat()
 
             )
         }
