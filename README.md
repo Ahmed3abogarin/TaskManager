@@ -8,6 +8,7 @@ A modern and efficient Task Manager app built with Jetpack Compose, designed to 
 -  Nested Scroll: Enhanced scrolling experience for a dynamic UI
 -  Circular Progress Bar: Visual representation of task completion
 -  Task Filtering & Sorting: Easily find tasks based on your choice
+-  Swipe to delete: just swipe the task to delete it
 -  Multiple App Themes: 6 different app themes beside Dark mode theme
 
 ## Tech
