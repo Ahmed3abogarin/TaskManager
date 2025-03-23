@@ -21,3 +21,4 @@ A modern and efficient Task Manager app built with Jetpack Compose, designed to 
 - Navigation Component
 
 ## Screenshots
+![Untitled design (18)](https://github.com/user-attachments/assets/54d28c11-75b0-455a-ae46-a385ae5fd928)
