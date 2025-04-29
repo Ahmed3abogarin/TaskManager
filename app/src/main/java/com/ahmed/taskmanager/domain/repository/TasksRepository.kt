@@ -9,4 +9,6 @@ interface TasksRepository {
     fun getTasks(): Flow<List<Task>>
     fun getByLowPriority(): Flow<List<Task>>
     fun getByHighPriority(): Flow<List<Task>>
+
+    fun getTasksList(filter: Int, sortOrder: Int): Flow<List<Task>>
 }

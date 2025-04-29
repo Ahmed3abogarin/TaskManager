@@ -3,7 +3,7 @@ package com.ahmed.taskmanager.presentation.components
 import android.graphics.Paint
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -31,7 +31,6 @@ fun TaskCircularProgress(
     initialValue:MutableState<Int>,
     primaryColor: Color,
     secondaryColor:Color,
-    maxValue:Int = 100,
     circleRadius:Float,
 ) {
     var circleCenter by remember {
@@ -39,12 +38,10 @@ fun TaskCircularProgress(
     }
 
 
-    Box(
-        modifier = modifier.size(160.dp)
-    ){
+    Box(modifier = modifier.padding(16.dp)){
         Canvas(
             modifier = Modifier
-                .fillMaxSize()
+                .size(160.dp)
         ){
             val width = size.width
             val height = size.height
@@ -76,7 +73,7 @@ fun TaskCircularProgress(
             drawArc(
                 color = primaryColor,
                 startAngle = 90f,
-                sweepAngle = (360f/maxValue) * initialValue.value.toFloat(),
+                sweepAngle = (360f/100) * initialValue.value.toFloat(),
                 style = Stroke(
                     width = circleThickness,
                     cap = StrokeCap.Round
@@ -114,3 +111,5 @@ fun TaskCircularProgress(
         }
     }
 }
+
+

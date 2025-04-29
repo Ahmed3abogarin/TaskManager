@@ -5,5 +5,6 @@ data class TaskUseCases(
     val deleteTask: DeleteTask,
     val getTasks: GetTasks,
     val getByLowPriority: GetByLowPriority,
-    val getByHighPriority: GetByHighPriority
+    val getByHighPriority: GetByHighPriority,
+    val getTasksList: GetTasksList
 )

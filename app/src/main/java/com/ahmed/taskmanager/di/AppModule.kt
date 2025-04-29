@@ -15,6 +15,7 @@ import com.ahmed.taskmanager.domain.usecases.tasks.DeleteTask
 import com.ahmed.taskmanager.domain.usecases.tasks.GetByHighPriority
 import com.ahmed.taskmanager.domain.usecases.tasks.GetByLowPriority
 import com.ahmed.taskmanager.domain.usecases.tasks.GetTasks
+import com.ahmed.taskmanager.domain.usecases.tasks.GetTasksList
 import com.ahmed.taskmanager.domain.usecases.tasks.TaskUseCases
 import com.ahmed.taskmanager.domain.usecases.tasks.UpsertTask
 import dagger.Module
@@ -62,7 +63,8 @@ object AppModule {
         deleteTask = DeleteTask(tasksRepository),
         getTasks = GetTasks(tasksRepository),
         getByLowPriority = GetByLowPriority(tasksRepository),
-        getByHighPriority = GetByHighPriority(tasksRepository)
+        getByHighPriority = GetByHighPriority(tasksRepository),
+        getTasksList = GetTasksList(tasksRepository)
     )
 
     @Provides

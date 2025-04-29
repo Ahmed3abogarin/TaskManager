@@ -111,7 +111,7 @@ fun TaskNavGraph() {
                     }) { innerPadding ->
                     HomeScreen(
                         animatedVisibilityScope = this@composable,
-                        viewModel = homeViewModel,
+                        state = homeViewModel.state.value,
                         modifier = Modifier.padding(innerPadding),
                         onClick = {
                             navigateToDetails(navController = navController, task = it)
