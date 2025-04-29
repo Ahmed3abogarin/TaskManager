@@ -27,7 +27,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.ahmed.taskmanager.presentation.components.PriorityDropDown
 import com.ahmed.taskmanager.presentation.components.TaskTopAppBar
-import com.ahmed.taskmanager.presentation.components.taskDatePicker
 import com.ahmed.taskmanager.domain.model.Task
 
 
@@ -41,7 +40,10 @@ fun SharedTransitionScope.DetailsScreen(
 ) {
     var description by remember { mutableStateOf(task.description) }
     var priority by remember { mutableStateOf(task.priority) }
+
+    // TODO: THIS BELOW
     var dateResult by remember { mutableStateOf(task.dueDate) }
+    var time by remember { mutableStateOf(task.time) }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -65,7 +67,8 @@ fun SharedTransitionScope.DetailsScreen(
                         done = radioStatus,
                         description = description.trim(),
                         dueDate = dateResult,
-                        priority = priority
+                        priority = priority,
+                        time = time
                     )
                     event(DetailsEvent.UpsertTask(updateTask))
                     navigateUp()
@@ -99,10 +102,10 @@ fun SharedTransitionScope.DetailsScreen(
             priority = it
         }
         Spacer(modifier = Modifier.height(12.dp))
-        dateResult = taskDatePicker(
-            taskDate = task.dueDate,
-            modifier = Modifier.padding(start = 16.dp, end = 16.dp)
-        )
+//        dateResult = taskDatePicker(
+//            taskDate = task.dueDate,
+//            modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+//        )
 
 
     }

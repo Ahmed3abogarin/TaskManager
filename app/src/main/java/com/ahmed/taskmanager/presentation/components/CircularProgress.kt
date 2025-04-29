@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -36,12 +37,16 @@ fun TaskCircularProgress(
     var circleCenter by remember {
         mutableStateOf(Offset.Zero)
     }
+    val screenHeight = LocalConfiguration.current.screenWidthDp
+    val screenWidth = LocalConfiguration.current.screenHeightDp
+
+    val canvasSize = minOf(screenWidth, screenHeight) * 0.4f
 
 
     Box(modifier = modifier.padding(16.dp)){
         Canvas(
             modifier = Modifier
-                .size(160.dp)
+                .size(canvasSize.dp)
         ){
             val width = size.width
             val height = size.height

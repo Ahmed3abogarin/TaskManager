@@ -33,8 +33,10 @@ import androidx.compose.ui.unit.sp
 import com.ahmed.taskmanager.domain.model.Priority
 import com.ahmed.taskmanager.presentation.components.PriorityDropDown
 import com.ahmed.taskmanager.presentation.components.TaskTextField
-import com.ahmed.taskmanager.presentation.components.taskDatePicker
 import com.ahmed.taskmanager.domain.model.Task
+import com.ahmed.taskmanager.presentation.components.TaskDateTimePicker
+import java.time.LocalDate
+import java.time.LocalTime
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,6 +51,8 @@ fun CreateScreen(
 
     val title = remember { mutableStateOf("") }
     val description = remember { mutableStateOf("") }
+    var taskDate by remember { mutableStateOf(LocalDate.now()) }
+    var taskTime by remember { mutableStateOf(LocalTime.now()) }
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
@@ -93,7 +97,10 @@ fun CreateScreen(
                     priority = it
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                val dateResult = taskDatePicker(taskDate = "Due date")
+
+                TaskDateTimePicker(onDateChanged = {taskDate = it}, onTimeChanged = {taskTime = it})
+
+//                val dateResult = taskDatePicker(taskDate = "Due date")
                 Spacer(modifier = Modifier.height(40.dp))
                 Button(
                     onClick = {
@@ -104,7 +111,8 @@ fun CreateScreen(
                                         title = title.value.trim(),
                                         description = description.value.trim(),
                                         priority = priority,
-                                        dueDate = dateResult
+                                        dueDate = taskDate,
+                                        time = taskTime
                                     )
                                 )
                             )

@@ -1,4 +1,4 @@
-package com.ahmed.taskmanager
+package com.ahmed.taskmanager.presentation.alarm
 
 import android.Manifest
 import android.content.BroadcastReceiver
@@ -9,17 +9,33 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.ahmed.taskmanager.R
 
 class ReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val title = intent.getStringExtra("title") ?: "Task Reminder"
         val notificationManager = NotificationManagerCompat.from(context)
 
+
+//        val fullScreenIntent = Intent(context, AlarmActivity::class.java)
+//        fullScreenIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//        val fullScreenPendingIntent = PendingIntent.getActivity(
+//            context, 0, fullScreenIntent,
+//            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+//        )
+
+        val alarmIntent = Intent(context, AlarmActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        context.startActivity(alarmIntent)
+
         val notification = NotificationCompat.Builder(context, "reminder_channel")
             .setSmallIcon(R.drawable.ic_filter_list) // Use your own icon
             .setContentTitle(title)
-            .setContentText("It's time for your task.")
+            .setContentText("It's time for your task")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_ALARM)
+            .setAutoCancel(true)
             .build()
 
         // Check for the POST_NOTIFICATIONS permission (required for Android 13+)

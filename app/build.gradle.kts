@@ -64,9 +64,9 @@ dependencies {
 
     implementation(libs.androidx.navigation.compose)
 
-    implementation ("com.google.dagger:hilt-android:2.55")
-    kapt ("com.google.dagger:hilt-compiler:2.55")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation (libs.hilt.android)
+    kapt (libs.hilt.compiler)
+    implementation (libs.androidx.hilt.navigation.compose)
 
 
     implementation(libs.androidx.room.runtime)
@@ -74,6 +74,8 @@ dependencies {
     implementation(libs.androidx.room.ktx)
 
     // data store
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(libs.androidx.datastore.preferences)
+
+    implementation (libs.lottie.compose)
 
 }

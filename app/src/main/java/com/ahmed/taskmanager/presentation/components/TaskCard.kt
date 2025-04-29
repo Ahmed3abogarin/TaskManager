@@ -36,6 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ahmed.taskmanager.util.Dimens.PRIORITY_INDICATOR_SIZE
 import com.ahmed.taskmanager.domain.model.Task
+import com.ahmed.taskmanager.util.convertToTime
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalSharedTransitionApi::class)
@@ -70,9 +71,9 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val parts = task.time.split(" ")
+            val parts = task.time.convertToTime()
             Text(
-                text = "${parts[0]}\n${parts[1]}",
+                text = parts[0] + "\n${parts[1]}",
                 textAlign = TextAlign.Center
             )
             Row(
@@ -125,7 +126,7 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
                         )
 
                         Text(
-                            text = task.dueDate,
+                            text = "${task.dueDate}",
                             modifier = Modifier.padding(start = 12.dp, bottom = 12.dp),
                             color = Color.Gray
                         )
