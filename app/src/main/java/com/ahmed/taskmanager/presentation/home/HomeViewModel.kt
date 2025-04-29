@@ -1,10 +1,22 @@
 package com.ahmed.taskmanager.presentation.home
 
+import android.Manifest
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
+import android.provider.Settings
 import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ahmed.taskmanager.ReminderReceiver
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.domain.usecases.tasks.TaskUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -91,6 +103,9 @@ class HomeViewModel @Inject constructor(
         tasksUseCases.deleteTask(task)
 
     }
+
+
+    // This can be called from the activity when the app launch
 
 
 }
