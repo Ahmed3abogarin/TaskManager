@@ -100,7 +100,7 @@ fun SharedTransitionScope.TaskCard(modifier: Modifier, task: Task, onClick: () -
                             .weight(0.9f)
                             .clickable(onClick = onClick)
                             .sharedElement(
-                                state = rememberSharedContentState(key = "task ${task.id}"),
+                                sharedContentState = rememberSharedContentState(key = "task ${task.id}"),
                                 animatedVisibilityScope = animatedVisibilityScope
                             ),
                         verticalArrangement = Arrangement.spacedBy(8.dp)

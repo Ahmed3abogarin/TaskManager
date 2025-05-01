@@ -6,14 +6,17 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Settings
-import com.ahmed.taskmanager.presentation.alarm.ReminderReceiver
+import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.domain.repository.AlarmScheduler
+import com.ahmed.taskmanager.presentation.alarm.ReminderReceiver
 
-class AlarmRepositoryImpl(private val context: Context): AlarmScheduler {
-    override fun schedule(taskId: Int, triggerAtMillis: Long,taskTitle: String) {
+class AlarmRepositoryImpl(private val context: Context) : AlarmScheduler {
+    override fun schedule(taskId: Int, triggerAtMillis: Long, task: Task) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, ReminderReceiver::class.java).apply {
-            putExtra("title", taskTitle)
+            putExtra("title", task.title)
+            putExtra("time", task.time.hour.toString() + ":" + task.time.minute.toString())
+            putExtra("date", task.dueDate.dayOfMonth.toString() + " " + task.dueDate.month.name)
         }
 
         val pendingIntent = PendingIntent.getBroadcast(

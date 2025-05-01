@@ -26,7 +26,7 @@ class CreateViewModel @Inject constructor(
             is CreateScreenEvent.UpsertTask -> {
                 val task = event.task
                 upsertTask(task)
-                setAlarm(task.id, task.title, task.dueDate,task.time)
+                setAlarm(task.id, task, task.dueDate,task.time)
             }
 
 
@@ -34,11 +34,11 @@ class CreateViewModel @Inject constructor(
         }
     }
 
-    private fun setAlarm(taskId: Int, taskTitle: String, taskDate: LocalDate, taskTime: LocalTime) {
+    private fun setAlarm(taskId: Int, task: Task, taskDate: LocalDate, taskTime: LocalTime) {
         val taskDateTime = LocalDateTime.of(taskDate, taskTime)
         val timeInMillis = taskDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
 
-        alarmUseCase.setAlarm(taskId = taskId, timeInMillis, taskTitle = taskTitle)
+        alarmUseCase.setAlarm(taskId = taskId, timeInMillis, task = task)
     }
 
     private fun upsertTask(task: Task) {

@@ -50,7 +50,7 @@ fun SharedTransitionScope.DetailsScreen(
             .statusBarsPadding()
             .background(MaterialTheme.colorScheme.tertiary)
             .sharedElement(
-                state = rememberSharedContentState(key = "task ${task.id}"),
+                sharedContentState = rememberSharedContentState(key = "task ${task.id}"),
                 animatedVisibilityScope = animatedVisibilityScope
             )
     ) {

@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+//val Pink80 = Color(0xFFEFB8C8)
 
 
 val LightPurple = Color(0xFFF1F4FF)
@@ -31,3 +31,5 @@ val LightFourth2= Color(0xFFEFDFBB)
 val LowPriorityColor = Color(0xFF00C980)
 val MediumPriorityColor = Color(0xFFFFC114)
 val HighPriorityColor = Color(0XFFFF4646)
+
+val AlarmBackgroundColor = Color(0xFF282BC9)

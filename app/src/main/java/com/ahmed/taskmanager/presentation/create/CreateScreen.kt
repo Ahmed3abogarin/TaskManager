@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SheetState
@@ -56,7 +57,8 @@ fun CreateScreen(
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        sheetState = sheetState
+        sheetState = sheetState,
+        containerColor = Color.White
     ) {
         Column(
             modifier = Modifier
@@ -98,7 +100,10 @@ fun CreateScreen(
                 }
                 Spacer(modifier = Modifier.height(16.dp))
 
+                HorizontalDivider(modifier = Modifier.fillMaxWidth())
                 TaskDateTimePicker(onDateChanged = {taskDate = it}, onTimeChanged = {taskTime = it})
+                HorizontalDivider(modifier = Modifier.fillMaxWidth())
+
 
 //                val dateResult = taskDatePicker(taskDate = "Due date")
                 Spacer(modifier = Modifier.height(40.dp))

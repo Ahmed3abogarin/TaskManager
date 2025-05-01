@@ -1,22 +1,32 @@
 package com.ahmed.taskmanager.presentation.components
 
 import android.app.DatePickerDialog
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import android.app.TimePickerDialog
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ahmed.taskmanager.domain.model.AppTheme
+import com.ahmed.taskmanager.ui.theme.TaskManagerTheme
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 //@OptIn(ExperimentalMaterial3Api::class)
 //@Composable
@@ -72,7 +82,7 @@ import java.time.LocalTime
 //}
 
 @Composable
-fun TaskDateTimePicker(onTimeChanged: (LocalTime)->Unit,onDateChanged: (LocalDate)->Unit) {
+fun TaskDateTimePicker(onTimeChanged: (LocalTime) -> Unit, onDateChanged: (LocalDate) -> Unit) {
     val context = LocalContext.current
     val now = LocalDateTime.now()
 
@@ -83,14 +93,43 @@ fun TaskDateTimePicker(onTimeChanged: (LocalTime)->Unit,onDateChanged: (LocalDat
     val showDatePicker = remember { mutableStateOf(false) }
     val showTimePicker = remember { mutableStateOf(false) }
 
-    Column(modifier = Modifier.padding(16.dp)) {
-        Button(onClick = { showDatePicker.value = true }) {
-            Text("Pick Date: $selectedDate")
+
+
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = "Due Date",
+            style = MaterialTheme.typography.headlineSmall
+        )
+        Row {
+            Button(
+                onClick = { showDatePicker.value = true },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+                contentPadding = PaddingValues(end = 8.dp)
+
+            ) {
+                Text(
+                    selectedDate.format(DateTimeFormatter.ofPattern("EEE, dd MMM yyyy")),
+                    color = Color.Black
+                )
+            }
+
+            Button(
+                onClick = { showTimePicker.value = true },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+                contentPadding = PaddingValues(2.dp)
+            ) {
+                Text(
+                    selectedTime.format(DateTimeFormatter.ofPattern("hh:mm a")),
+                    color = Color.Black
+                )
+            }
+
         }
 
-        Button(onClick = { showTimePicker.value = true }) {
-            Text("Pick Time: $selectedTime")
-        }
 
     }
 
@@ -101,6 +140,7 @@ fun TaskDateTimePicker(onTimeChanged: (LocalTime)->Unit,onDateChanged: (LocalDat
                 selectedDate = LocalDate.of(year, month + 1, day)
                 onDateChanged(selectedDate)
                 showDatePicker.value = false
+                showTimePicker.value = true
             },
             now.year,
             now.monthValue - 1,
@@ -120,5 +160,24 @@ fun TaskDateTimePicker(onTimeChanged: (LocalTime)->Unit,onDateChanged: (LocalDat
             now.minute,
             true
         ).show()
+    }
+}
+
+@Preview
+@Composable
+fun TimeBack() {
+    TaskManagerTheme(selectedTheme = AppTheme.LIGHT_FIRST) {
+
+        TaskDateTimePicker(onTimeChanged = {}, onDateChanged = {})
+//        Column(modifier = Modifier.padding(16.dp)) {
+//            Button(onClick = { }) {
+//                Text("Pick Date: ")
+//            }
+//
+//            Button(onClick = {  }) {
+//                Text("Pick Time: ")
+//            }
+//
+//        }
     }
 }

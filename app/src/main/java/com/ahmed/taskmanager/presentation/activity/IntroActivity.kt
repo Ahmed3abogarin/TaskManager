@@ -4,10 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -39,26 +35,23 @@ class IntroActivity : ComponentActivity() {
 
 @Composable
 fun SplashScreen(onTimeout: () -> Unit) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.splash_animation))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.splash))
 
-    LaunchedEffect(Unit) {
-        delay(4000)
-        onTimeout()
-    }
-
-    AnimatedVisibility(visible = true, enter = slideInHorizontally(
-        initialOffsetX = { it },
-        animationSpec = tween(durationMillis = 600)
-    ), exit = slideOutHorizontally(
-        targetOffsetX = { it },
-        animationSpec = tween(durationMillis = 600)
-    )
-
-    ) {
-        Box(modifier = Modifier.fillMaxSize().background(Color.White), contentAlignment = Alignment.Center) {
-            LottieAnimation(modifier = Modifier.size(400.dp), composition = composition)
+    LaunchedEffect(composition) {
+        if (composition != null) {
+            delay(1300)
+            onTimeout()
         }
 
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        contentAlignment = Alignment.Center
+    ) {
+        LottieAnimation(modifier = Modifier.size(400.dp), composition = composition)
     }
 
 

@@ -1,6 +1,5 @@
 package com.ahmed.taskmanager.presentation.home
 
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope
@@ -113,12 +112,10 @@ fun SharedTransitionScope.HomeScreen(
                 ) {
                     FilterDropDown (onFilterClicked = {
                         event(HomeEvent.UpdateTaskFilter(it))
-                        Log.v("TTTOOL","Filter: $it")
                     })
 
                     SortDropdown(onSortClicked = {
                         event(HomeEvent.UpdateTaskSort(it))
-                        Log.v("TTTOOL","Sort: $it")
 
                     })
 
@@ -148,6 +145,9 @@ fun SharedTransitionScope.HomeScreen(
                     animatedVisibilityScope = animatedVisibilityScope,
                     onRemove = { onRemoveClicked(task)}
                 )
+            }
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }

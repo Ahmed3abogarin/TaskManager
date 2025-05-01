@@ -2,15 +2,14 @@
 <resources>
 
     <style name="Theme.TaskManager" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:backgroundDimEnabled">true</item>
     </style>
-    <style name="Theme.TaskManager.Transparent" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:backgroundDimEnabled">false</item>
+    <style name="App.Starting.Theme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFFFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_transparent</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/white</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="postSplashScreenTheme">@style/Theme.TaskManager</item>
         <item name="android:windowNoTitle">true</item>
     </style>
 </resources>

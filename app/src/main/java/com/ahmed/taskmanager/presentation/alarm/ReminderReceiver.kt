@@ -14,17 +14,14 @@ import com.ahmed.taskmanager.R
 class ReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val title = intent.getStringExtra("title") ?: "Task Reminder"
+        val time = intent.getStringExtra("time") ?: "Not specify"
+        val date = intent.getStringExtra("date") ?: "Not specify"
+
         val notificationManager = NotificationManagerCompat.from(context)
-
-
-//        val fullScreenIntent = Intent(context, AlarmActivity::class.java)
-//        fullScreenIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//        val fullScreenPendingIntent = PendingIntent.getActivity(
-//            context, 0, fullScreenIntent,
-//            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-//        )
-
         val alarmIntent = Intent(context, AlarmActivity::class.java).apply {
+            putExtra("title",title)
+            putExtra("time",time)
+            putExtra("date",date)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
         context.startActivity(alarmIntent)
