@@ -5,6 +5,7 @@ import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -36,6 +37,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.ahmed.taskmanager.domain.model.Priority
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.presentation.create.CreateScreen
 import com.ahmed.taskmanager.presentation.create.CreateViewModel
@@ -47,6 +49,8 @@ import com.ahmed.taskmanager.presentation.home.HomeViewModel
 import com.ahmed.taskmanager.presentation.settings.SettingsScreen
 import com.ahmed.taskmanager.presentation.settings.ThemeViewModel
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.LocalTime
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
 @Composable
@@ -61,6 +65,8 @@ fun TaskNavGraph() {
     val coroutine = rememberCoroutineScope()
     val snackBarState = remember { SnackbarHostState() }
 
+    val showDialog = remember { mutableStateOf(false) }
+    var task by remember { mutableStateOf<Task?>(null) }
 
 
     SharedTransitionLayout {
@@ -69,6 +75,15 @@ fun TaskNavGraph() {
             composable(Route.HomeScreen.route) {
                 val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
                 var showBottomDialog by remember { mutableStateOf(false) }
+
+                if (showDialog.value && task != null){
+                    DetailsScreen(
+                        task!!,
+                        event = detailsViewModel::onEvent,
+                        navigateUp = { showDialog.value = false},
+                        showDialog = showDialog
+                    )
+                }
 
                 if (showBottomDialog) {
                     CreateScreen(
@@ -114,7 +129,10 @@ fun TaskNavGraph() {
                         state = homeViewModel.state.value,
                         modifier = Modifier.padding(innerPadding),
                         onClick = {
-                            navigateToDetails(navController = navController, task = it)
+//                            navigateToDetails(navController = navController, task = it)
+                            task = it
+                            showDialog.value = true
+
                         },
                         onRemoveClicked = { task ->
                             homeViewModel.onEvent(HomeEvent.DeleteTask(task))
@@ -136,14 +154,13 @@ fun TaskNavGraph() {
             }
 
             composable(Route.DetailsScreen.route) {
-                navController.previousBackStackEntry?.savedStateHandle?.get<Task>("task")?.let {
-                    DetailsScreen(
-                        it,
-                        animatedVisibilityScope = this@composable,
-                        event = detailsViewModel::onEvent,
-                        navigateUp = { navController.navigateUp() }
-                    )
+
+                Box(modifier = Modifier.fillMaxSize()){
+
                 }
+
+
+
             }
             composable(
                 Route.SettingsScreen.route,
@@ -175,5 +192,5 @@ fun TaskNavGraph() {
 
 private fun navigateToDetails(navController: NavController, task: Task) {
     navController.currentBackStackEntry?.savedStateHandle?.set("task", task)
-    navController.navigate(route = Route.DetailsScreen.route)
+//    navController.navigate(route = Route.DetailsScreen.route)
 }

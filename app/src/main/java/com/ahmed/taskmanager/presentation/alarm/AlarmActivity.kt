@@ -114,10 +114,10 @@ fun AlarmScreen(onDismiss: () -> Unit,title: String,time: String,date: String) {
             modifier = Modifier
                 .align(Alignment.TopCenter)
                 .statusBarsPadding()
-                .padding(top = 120.dp),
+                .padding(top = 130.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = time, fontSize = 54.sp, color = Color.White)
+            Text(text = time, fontSize = 56.sp, color = Color.White)
             Text(text = date, fontSize = 12.sp, color = Color.White)
             Spacer(modifier = Modifier.height(12.dp))
             Text(text = title, color = Color.White)

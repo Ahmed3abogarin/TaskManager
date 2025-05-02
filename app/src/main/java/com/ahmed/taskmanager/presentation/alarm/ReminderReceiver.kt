@@ -27,7 +27,7 @@ class ReminderReceiver : BroadcastReceiver() {
         context.startActivity(alarmIntent)
 
         val notification = NotificationCompat.Builder(context, "reminder_channel")
-            .setSmallIcon(R.drawable.ic_filter_list) // Use your own icon
+            .setSmallIcon(R.drawable.ic_notification) // Use your own icon
             .setContentTitle(title)
             .setContentText("It's time for your task")
             .setPriority(NotificationCompat.PRIORITY_HIGH)

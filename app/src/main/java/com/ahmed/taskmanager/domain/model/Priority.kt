@@ -9,5 +9,4 @@ enum class Priority(val color: Color) {
     HIGH(HighPriorityColor),
     MEDIUM(MediumPriorityColor),
     LOW(LowPriorityColor),
-    NONE(Color.Transparent)
 }

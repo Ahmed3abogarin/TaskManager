@@ -6,7 +6,7 @@ import com.ahmed.taskmanager.domain.repository.AlarmScheduler
 class SetAlarm(
     private val alarmScheduler: AlarmScheduler
 ) {
-    operator fun invoke(taskId: Int,triggerAtMillis: Long,task: Task){
-        alarmScheduler.schedule(taskId,triggerAtMillis,task)
+    operator fun invoke(triggerAtMillis: Long,task: Task){
+        alarmScheduler.schedule(triggerAtMillis,task)
     }
 }

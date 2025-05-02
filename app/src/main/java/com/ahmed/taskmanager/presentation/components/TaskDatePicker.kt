@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ahmed.taskmanager.domain.model.AppTheme
 import com.ahmed.taskmanager.ui.theme.TaskManagerTheme
+import com.ahmed.taskmanager.util.convertDate
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -82,7 +83,7 @@ import java.time.format.DateTimeFormatter
 //}
 
 @Composable
-fun TaskDateTimePicker(onTimeChanged: (LocalTime) -> Unit, onDateChanged: (LocalDate) -> Unit) {
+fun TaskDateTimePicker(modifier: Modifier = Modifier,onTimeChanged: (LocalTime) -> Unit, onDateChanged: (LocalDate) -> Unit) {
     val context = LocalContext.current
     val now = LocalDateTime.now()
 
@@ -96,7 +97,7 @@ fun TaskDateTimePicker(onTimeChanged: (LocalTime) -> Unit, onDateChanged: (Local
 
 
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -112,7 +113,7 @@ fun TaskDateTimePicker(onTimeChanged: (LocalTime) -> Unit, onDateChanged: (Local
 
             ) {
                 Text(
-                    selectedDate.format(DateTimeFormatter.ofPattern("EEE, dd MMM yyyy")),
+                    selectedDate.convertDate(),
                     color = Color.Black
                 )
             }

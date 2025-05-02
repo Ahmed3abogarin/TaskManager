@@ -42,7 +42,6 @@ fun SplashScreen(onTimeout: () -> Unit) {
             delay(1300)
             onTimeout()
         }
-
     }
 
     Box(

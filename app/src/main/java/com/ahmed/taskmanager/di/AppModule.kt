@@ -15,6 +15,7 @@ import com.ahmed.taskmanager.domain.usecases.AlarmUseCase
 import com.ahmed.taskmanager.domain.usecases.app_theme.GetAppTheme
 import com.ahmed.taskmanager.domain.usecases.app_theme.SaveAppTheme
 import com.ahmed.taskmanager.domain.usecases.app_theme.ThemeUseCases
+import com.ahmed.taskmanager.domain.usecases.tasks.CancelAlarm
 import com.ahmed.taskmanager.domain.usecases.tasks.DeleteTask
 import com.ahmed.taskmanager.domain.usecases.tasks.GetByHighPriority
 import com.ahmed.taskmanager.domain.usecases.tasks.GetByLowPriority
@@ -46,7 +47,7 @@ object AppModule {
             context = application,
             klass = TasksDatabase::class.java,
             name = "Tasks"
-        ).fallbackToDestructiveMigration()
+        ).fallbackToDestructiveMigration(true)
             .build()
     }
 
@@ -76,7 +77,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAlarmUseCases(alarmScheduler: AlarmScheduler): AlarmUseCase =
-        AlarmUseCase(setAlarm = SetAlarm(alarmScheduler))
+        AlarmUseCase(setAlarm = SetAlarm(alarmScheduler), cancelAlarm = CancelAlarm(alarmScheduler))
 
     @Provides
     @Singleton

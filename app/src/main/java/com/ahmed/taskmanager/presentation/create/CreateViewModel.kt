@@ -8,9 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.LocalTime
 import java.time.ZoneId
 import javax.inject.Inject
 
@@ -26,7 +24,7 @@ class CreateViewModel @Inject constructor(
             is CreateScreenEvent.UpsertTask -> {
                 val task = event.task
                 upsertTask(task)
-                setAlarm(task.id, task, task.dueDate,task.time)
+                setAlarm(task)
             }
 
 
@@ -34,11 +32,11 @@ class CreateViewModel @Inject constructor(
         }
     }
 
-    private fun setAlarm(taskId: Int, task: Task, taskDate: LocalDate, taskTime: LocalTime) {
-        val taskDateTime = LocalDateTime.of(taskDate, taskTime)
+    private fun setAlarm(task: Task) {
+        val taskDateTime = LocalDateTime.of(task.dueDate, task.time)
         val timeInMillis = taskDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
 
-        alarmUseCase.setAlarm(taskId = taskId, timeInMillis, task = task)
+        alarmUseCase.setAlarm(timeInMillis, task = task)
     }
 
     private fun upsertTask(task: Task) {

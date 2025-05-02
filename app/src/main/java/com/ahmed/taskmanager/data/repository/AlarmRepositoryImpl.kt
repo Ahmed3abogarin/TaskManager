@@ -9,19 +9,20 @@ import android.provider.Settings
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.domain.repository.AlarmScheduler
 import com.ahmed.taskmanager.presentation.alarm.ReminderReceiver
+import com.ahmed.taskmanager.util.convertToTime
 
 class AlarmRepositoryImpl(private val context: Context) : AlarmScheduler {
-    override fun schedule(taskId: Int, triggerAtMillis: Long, task: Task) {
+    override fun schedule(triggerAtMillis: Long, task: Task) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, ReminderReceiver::class.java).apply {
             putExtra("title", task.title)
-            putExtra("time", task.time.hour.toString() + ":" + task.time.minute.toString())
+            putExtra("time", task.time.convertToTime())
             putExtra("date", task.dueDate.dayOfMonth.toString() + " " + task.dueDate.month.name)
         }
 
         val pendingIntent = PendingIntent.getBroadcast(
             context,
-            triggerAtMillis.toInt(),
+            task.id,
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
@@ -43,5 +44,19 @@ class AlarmRepositoryImpl(private val context: Context) : AlarmScheduler {
         )
 
 
+    }
+
+    override fun cancelTaskAlarm(taskId: Int)  {
+        val intent = Intent(context, ReminderReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            taskId,
+            intent,
+            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
+        )
+        pendingIntent?.let {
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmManager.cancel(it)
+        }
     }
 }
