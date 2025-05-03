@@ -30,7 +30,9 @@ class AlarmRepositoryImpl(private val context: Context) : AlarmScheduler {
         // Check permissions for exact alarm scheduling
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             if (!alarmManager.canScheduleExactAlarms()) {
-                val cintent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM)
+                val cintent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }
                 context.startActivity(cintent)
                 return
             }

@@ -136,13 +136,12 @@ fun DetailsScreen(
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
-
+                HorizontalDivider(modifier = Modifier.fillMaxWidth().padding(start = 16.dp,end = 16.dp))
                 TaskDateTimePicker(
                     modifier = Modifier.padding(start = 16.dp, end = 16.dp),
                     onDateChanged = { taskDate = it },
                     onTimeChanged = { taskTime = it }
                 )
-                HorizontalDivider(modifier = Modifier.fillMaxWidth().padding(start = 16.dp,end = 16.dp))
 
                 Spacer(modifier = Modifier.height(8.dp))
 
