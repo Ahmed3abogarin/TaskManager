@@ -16,18 +16,6 @@ class TasksRepositoryImpl(
         tasksDao.deleteTask(task)
     }
 
-    override  fun getTasks(): Flow<List<Task>> {
-        return tasksDao.getTasks()
-    }
-
-    override fun getByLowPriority(): Flow<List<Task>> {
-        return tasksDao.sortByLowPriority()
-    }
-
-    override fun getByHighPriority(): Flow<List<Task>> {
-        return tasksDao.sortByHighPriority()
-    }
-
     override fun getTasksList(filter: Int, sortOrder: Int): Flow<List<Task>> {
         return tasksDao.getTasksList(filter,sortOrder)
     }

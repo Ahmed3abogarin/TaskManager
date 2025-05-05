@@ -12,5 +12,7 @@ object Dimens {
     val PRIORITY_DROP_DOWN_HEIGHT = 60.dp
     val LOGO_HEIGHT = 100.dp
 
+    val IndicatorSize = 14.dp
+
     val TASK_ITEM_ELEVATION = 2.dp
 }

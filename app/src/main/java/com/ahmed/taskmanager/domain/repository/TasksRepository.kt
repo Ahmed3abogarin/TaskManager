@@ -6,9 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface TasksRepository {
     suspend fun upsertTask(task: Task)
     suspend fun deleteTask(task: Task)
-    fun getTasks(): Flow<List<Task>>
-    fun getByLowPriority(): Flow<List<Task>>
-    fun getByHighPriority(): Flow<List<Task>>
-
     fun getTasksList(filter: Int, sortOrder: Int): Flow<List<Task>>
 }

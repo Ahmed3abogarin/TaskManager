@@ -17,34 +17,6 @@ interface TasksDao {
     @Delete
     fun deleteTask(task: Task)
 
-    @Query("SELECT * FROM Task")
-    fun getTasks(): Flow<List<Task>>
-
-    @Query(
-        """
-        SELECT * FROM Task ORDER BY
-    CASE
-        WHEN priority LIKE 'L%' THEN 1
-        WHEN priority LIKE 'M%' THEN 2
-        WHEN priority LIKE 'H%' THEN 3
-    END
-    """
-    )
-    fun sortByLowPriority(): Flow<List<Task>>
-
-
-    @Query(
-        """
-        SELECT * FROM Task ORDER BY
-    CASE
-        WHEN priority LIKE 'H%' THEN 1
-        WHEN priority LIKE 'M%' THEN 2
-        WHEN priority LIKE 'L%' THEN 3
-    END
-    """
-    )
-    fun sortByHighPriority(): Flow<List<Task>>
-
 
     @Query("""
         SELECT * FROM Task 

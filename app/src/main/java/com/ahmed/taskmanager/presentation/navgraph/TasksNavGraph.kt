@@ -5,7 +5,6 @@ import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -33,11 +32,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.ahmed.taskmanager.domain.model.Priority
 import com.ahmed.taskmanager.domain.model.Task
 import com.ahmed.taskmanager.presentation.create.CreateScreen
 import com.ahmed.taskmanager.presentation.create.CreateViewModel
@@ -49,12 +46,10 @@ import com.ahmed.taskmanager.presentation.home.HomeViewModel
 import com.ahmed.taskmanager.presentation.settings.SettingsScreen
 import com.ahmed.taskmanager.presentation.settings.ThemeViewModel
 import kotlinx.coroutines.launch
-import java.time.LocalDate
-import java.time.LocalTime
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
 @Composable
-fun TaskNavGraph() {
+fun TasksNavGraph() {
 //    val context = LocalContext.current
     val navController = rememberNavController()
     val homeViewModel: HomeViewModel = hiltViewModel()
@@ -153,15 +148,6 @@ fun TaskNavGraph() {
                 }
             }
 
-            composable(Route.DetailsScreen.route) {
-
-                Box(modifier = Modifier.fillMaxSize()){
-
-                }
-
-
-
-            }
             composable(
                 Route.SettingsScreen.route,
                 enterTransition = {
@@ -186,11 +172,4 @@ fun TaskNavGraph() {
             }
         }
     }
-
-
-}
-
-private fun navigateToDetails(navController: NavController, task: Task) {
-    navController.currentBackStackEntry?.savedStateHandle?.set("task", task)
-//    navController.navigate(route = Route.DetailsScreen.route)
 }

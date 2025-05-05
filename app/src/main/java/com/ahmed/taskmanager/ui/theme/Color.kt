@@ -33,3 +33,5 @@ val MediumPriorityColor = Color(0xFFFFC114)
 val HighPriorityColor = Color(0XFFFF4646)
 
 val AlarmBackgroundColor = Color(0xFF282BC9)
+
+val DarkGreen = Color(0xFF0C3619)
