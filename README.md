@@ -31,5 +31,8 @@ A modern and efficient Task Manager app built with Jetpack Compose, designed to 
 ## App splash screen
 https://github.com/user-attachments/assets/ec6f27d7-4a04-406e-89e4-82a627dc6328
 
+## Live demo link
+https://drive.google.com/file/d/1mAR42gCqOqmt1vJbGkjBHCBvOO1rOvmN/view?usp=drive_link
+
 
 
